@@ -69,7 +69,6 @@ public class Lang {
      * @param key label as it appears in lang file, such as "journalNoQuests"
      * @return formatted string, plus processing through PlaceholderAPI by clip
      */
-    @SuppressWarnings("deprecation")
     public static String get(final Player player, final String key) {
         if (key == null) {
             return null;
@@ -81,7 +80,7 @@ public class Lang {
         try {
             locale = player.getLocale();
         } catch (NoSuchMethodError e) {
-            locale = player.spigot().getLocale();
+            locale = player.getLocale();
         }
         final int separator = locale.indexOf("_");
         if (separator == -1) {
