@@ -310,41 +310,51 @@ public class BlockListener implements Listener {
     @EventHandler
     public void onBlockUse(final PlayerInteractEvent evt) {
         EquipmentSlot slot = evt.getHand();
-
-        if (slot == null || slot.equals(EquipmentSlot.HAND)) { // If the event is fired by HAND (main hand)
-            final Player player = evt.getPlayer();
-            if (plugin.canUseQuests(evt.getPlayer().getUniqueId())) {
-                final IQuester quester = plugin.getQuester(player.getUniqueId());
-                if (quester.isSelectingBlock()) {
-                    return;
-                }
-                if (evt.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                    if (!evt.isCancelled() && evt.getClickedBlock() != null) {
-                        final ItemStack blockItemStack = new ItemStack(evt.getClickedBlock().getType(), 1, evt
-                                .getClickedBlock().getState().getData().toItemStack().getDurability());
-                        final ObjectiveType type = ObjectiveType.USE_BLOCK;
-                        final Set<String> dispatchedQuestIDs = new HashSet<>();
-                        for (final IQuest quest : plugin.getLoadedQuests()) {
-                            if (!quester.meetsCondition(quest, true)) {
-                                continue;
-                            }
-
-                            if (quester.getCurrentQuestsTemp().containsKey(quest)
-                                    && quester.getCurrentStage(quest).containsObjective(type)) {
-                                quester.useBlock(quest, blockItemStack);
-                            }
-
-                            dispatchedQuestIDs.addAll(quester.dispatchMultiplayerEverything(quest, type,
-                                    (final IQuester q, final IQuest cq) -> {
-                                        if (!dispatchedQuestIDs.contains(cq.getId())) {
-                                            q.useBlock(cq, blockItemStack);
-                                        }
-                                        return null;
-                                    }));
-                        }
-                    }
-                }
-            }
+        if (!(slot == null || slot.equals(EquipmentSlot.HAND))) {
+            return;
         }
+        // If the event is fired by HAND (main hand)
+        final Player player = evt.getPlayer();
+        if (!plugin.canUseQuests(evt.getPlayer().getUniqueId())) {
+            return;
+        }
+
+        final IQuester quester = plugin.getQuester(player.getUniqueId());
+        if (quester.isSelectingBlock()) {
+            return;
+        }
+        if (!evt.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            return;
+        }
+
+        if (evt.isCancelled() || evt.getClickedBlock() == null) {
+            return;
+        }
+
+
+        final ItemStack blockItemStack = new ItemStack(evt.getClickedBlock().getType(), 1, evt
+                .getClickedBlock().getState().getData().toItemStack().getDurability());
+        final ObjectiveType type = ObjectiveType.USE_BLOCK;
+        final Set<String> dispatchedQuestIDs = new HashSet<>();
+        for (final IQuest quest : plugin.getLoadedQuests()) {
+            if (!quester.meetsCondition(quest, true)) {
+                continue;
+            }
+
+            if (quester.getCurrentQuestsTemp().containsKey(quest)
+                    && quester.getCurrentStage(quest).containsObjective(type)) {
+                quester.useBlock(quest, blockItemStack);
+            }
+
+            dispatchedQuestIDs.addAll(quester.dispatchMultiplayerEverything(quest, type,
+                    (final IQuester q, final IQuest cq) -> {
+                        if (!dispatchedQuestIDs.contains(cq.getId())) {
+                            q.useBlock(cq, blockItemStack);
+                        }
+                        return null;
+                    }));
+        }
+
+
     }
 }
