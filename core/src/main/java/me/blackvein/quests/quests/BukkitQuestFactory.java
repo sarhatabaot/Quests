@@ -130,8 +130,8 @@ public class BukkitQuestFactory implements QuestFactory, ConversationAbandonedLi
         if (abandonedEvent.getContext().getSessionData(CK.Q_NAME) != null) {
             editingQuestNames.remove((String) abandonedEvent.getContext().getSessionData(CK.Q_NAME));
         }
-        if (abandonedEvent.getContext().getForWhom() instanceof Player) {
-            final UUID uuid = ((Player) abandonedEvent.getContext().getForWhom()).getUniqueId();
+        if (abandonedEvent.getContext().getForWhom() instanceof Player player) {
+            final UUID uuid = player.getUniqueId();
             selectedBlockStarts.remove(uuid);
             selectedKillLocations.remove(uuid);
             selectedReachLocations.remove(uuid);
