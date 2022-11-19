@@ -21,11 +21,7 @@ import java.util.Map;
 
 public abstract class ParticleProvider {
 
-    private static ParticleProvider loaded;
-
-    static {
-        loaded = new ParticleProviderBukkit();
-    }
+    private static ParticleProvider loaded = new ParticleProviderBukkit();
 
     abstract Map<PreBuiltParticle, Object> getParticleMap();
 
