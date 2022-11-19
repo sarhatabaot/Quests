@@ -20,19 +20,7 @@ public abstract class ActionBarProvider {
     private static ActionBarProvider loaded;
 
     static {
-        final String internalsName = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        try {
-            final String packageName = ActionBarProvider.class.getPackage().getName();
-            if (internalsName.startsWith("v1_8_R")) {
-                loaded = (ActionBarProvider) Class.forName(packageName + ".ActionBarProvider_" + internalsName)
-                        .newInstance();
-            } else {
-                loaded = new ActionBarProviderBukkit();
-            }
-        } catch (final ClassNotFoundException | InstantiationException | IllegalAccessException
-                | ClassCastException exception) {
-            Bukkit.getLogger().severe("[Quests] No valid action bar implementation for version " + internalsName);
-        }
+        loaded = new ActionBarProviderBukkit();
     }
 
     abstract void sendActionBarPacket(Player player, String message);
