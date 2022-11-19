@@ -18,6 +18,7 @@ import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.apache.logging.log4j.message.Message;
+import org.jetbrains.annotations.NotNull;
 
 public class QuestsLog4JFilter extends AbstractFilter {
 
@@ -58,7 +59,7 @@ public class QuestsLog4JFilter extends AbstractFilter {
     }
 
     @Override
-    public Result filter(Logger logger, Level level, Marker marker, Message msg, Throwable t) {
+    public Result filter(Logger logger, Level level, Marker marker, @NotNull Message msg, Throwable t) {
         return validateMessage(msg.getFormattedMessage());
     }
 
