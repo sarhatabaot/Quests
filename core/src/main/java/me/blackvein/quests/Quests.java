@@ -1473,7 +1473,7 @@ public class Quests extends JavaPlugin implements QuestsAPI {
             if (getSettings().canTranslateNames()) {
                 localeManager.sendMessage(quester.getPlayer(), message, e, null);
             } else {
-                quester.sendMessage(message.replace("<mob>", MiscUtil.getProperMobName(e)));
+                quester.sendMessage(message.replace("<mob>", MiscUtil.snakeCaseToUpperCamelCase(e.name())));
             }
             mobKillIndex++;
         }
@@ -1498,7 +1498,7 @@ public class Quests extends JavaPlugin implements QuestsAPI {
                 localeManager.sendMessage(quester.getPlayer(), message, stage.getMobsToTame().get(tameIndex), null);
             } else {
                 quester.sendMessage(message.replace("<mob>",
-                        MiscUtil.getProperMobName(stage.getMobsToTame().get(tameIndex))));
+                        MiscUtil.snakeCaseToUpperCamelCase(stage.getMobsToTame().get(tameIndex).name())));
             }
             tameIndex++;
         }

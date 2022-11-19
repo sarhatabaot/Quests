@@ -1460,7 +1460,7 @@ public class Quester implements IQuester {
             if (depends.getPlaceholderApi() != null) {
                 message = PlaceholderAPI.setPlaceholders(getPlayer(), message);
             }
-            objectives.add(message.replace("<mob>", MiscUtil.getProperMobName(e)));
+            objectives.add(message.replace("<mob>", MiscUtil.snakeCaseToUpperCamelCase(e.name())));
             mobKillIndex++;
         }
         int tameIndex = 0;
@@ -1480,7 +1480,7 @@ public class Quester implements IQuester {
                 // Legacy
                 message += color + ": " + tamed + "/" + toTame;
             }
-            objectives.add(message.replace("<mob>", MiscUtil.getProperMobName(stage.getMobsToTame().get(tameIndex))));
+            objectives.add(message.replace("<mob>", MiscUtil.snakeCaseToUpperCamelCase(stage.getMobsToTame().get(tameIndex).name())));
             tameIndex++;
         }
         if (stage.getFishToCatch() != null) {
@@ -1973,7 +1973,7 @@ public class Quester implements IQuester {
                 message = PlaceholderAPI.setPlaceholders(getPlayer(), message);
             }
             if (formatNames) {
-                message = message.replace("<mob>", MiscUtil.getProperMobName(e));
+                message = message.replace("<mob>", MiscUtil.snakeCaseToUpperCamelCase(e.name()));
             }
             objectives.add(new BukkitObjective(ObjectiveType.KILL_MOB, message,
                     new CountableMob(e, mobKilled), new CountableMob(e, toMobKill)));
@@ -1998,7 +1998,7 @@ public class Quester implements IQuester {
                 message += color + ": " + tamed + "/" + toTame;
             }
             if (formatNames) {
-                message = message.replace("<mob>", MiscUtil.getProperMobName(stage.getMobsToTame().get(tameIndex)));
+                message = message.replace("<mob>", MiscUtil.snakeCaseToUpperCamelCase(stage.getMobsToTame().get(tameIndex).name()));
             }
             objectives.add(new BukkitObjective(ObjectiveType.TAME_MOB, message,
                     new CountableMob(e, tamed), new CountableMob(e, toTame)));
