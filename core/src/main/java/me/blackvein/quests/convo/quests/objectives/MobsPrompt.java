@@ -183,10 +183,10 @@ public class MobsPrompt extends QuestsEditorNumericPrompt {
     public @NotNull String getBasicPromptText(final ConversationContext context) {
         context.setSessionData(pref, Boolean.TRUE);
 
-        if (context.getPlugin() != null) {
+        if (plugin != null) {
             final QuestsEditorPostOpenNumericPromptEvent event
                     = new QuestsEditorPostOpenNumericPromptEvent(context, this);
-            context.getPlugin().getServer().getPluginManager().callEvent(event);
+            plugin.getServer().getPluginManager().callEvent(event);
         }
 
         final StringBuilder text = new StringBuilder(ChatColor.AQUA + "- " + getTitle(context) + " -");
