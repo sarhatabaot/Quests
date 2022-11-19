@@ -32,6 +32,7 @@ import java.util.List;
 public class BlocksPrompt extends QuestsEditorNumericPrompt {
     private final int stageNum;
     private final String pref;
+    private final int size = 5;
 
     public BlocksPrompt(final int stageNum, final ConversationContext context) {
         super(context);
@@ -39,7 +40,7 @@ public class BlocksPrompt extends QuestsEditorNumericPrompt {
         this.pref = "stage" + stageNum;
     }
     
-    private final int size = 5;
+
     
     @Override
     public int getSize() {
