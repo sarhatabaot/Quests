@@ -1012,9 +1012,7 @@ public class Quest implements IQuest {
                         text = new StringBuilder("- " + ChatColor.DARK_GREEN + "<item>:" + i.getDurability());
                         if (!i.getEnchantments().isEmpty()) {
                             text.append(ChatColor.GRAY).append(" ").append(Lang.get(p, "with"));
-                            for (int iz = 0; iz < i.getEnchantments().size(); iz++) {
-                                text.append(" <enchantment> <level>");
-                            }
+                            text.append(" <enchantment> <level>".repeat(i.getEnchantments().size()));
                         }
                         text.append(ChatColor.GRAY).append(" x ").append(i.getAmount());
                     } else {
@@ -1023,9 +1021,7 @@ public class Quest implements IQuest {
                             try {
                                 if (!i.getItemMeta().hasItemFlag(ItemFlag.HIDE_ENCHANTS)) {
                                     text.append(ChatColor.GRAY).append(" ").append(Lang.get(p, "with"));
-                                    for (int iz = 0; iz < i.getEnchantments().size(); iz++) {
-                                        text.append(" <enchantment> <level>");
-                                    }
+                                    text.append(" <enchantment> <level>".repeat(i.getEnchantments().size()));
                                 }
                             } catch (final Throwable tr) {
                                 // Do nothing, hasItemFlag() not introduced until 1.8.6
