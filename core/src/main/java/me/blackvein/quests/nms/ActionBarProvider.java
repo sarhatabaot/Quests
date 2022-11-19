@@ -27,7 +27,7 @@ public abstract class ActionBarProvider {
                 loaded = (ActionBarProvider) Class.forName(packageName + ".ActionBarProvider_" + internalsName)
                         .newInstance();
             } else {
-                loaded = new ActionBarProvider_Bukkit();
+                loaded = new ActionBarProviderBukkit();
             }
         } catch (final ClassNotFoundException | InstantiationException | IllegalAccessException
                 | ClassCastException exception) {
