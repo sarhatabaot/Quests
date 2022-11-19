@@ -40,7 +40,7 @@ public class ItemUtil {
 
     /**
      * Compare two stacks by name, amount, durability, display name, lore, enchantments, stored enchants and item flags
-     *
+     * <p>
      *
      * @param one first ItemStack to compare against second
      * @param two second ItemStack to compare against first
@@ -63,7 +63,7 @@ public class ItemUtil {
     
     /**
      * Compare two stacks by name, amount, durability, display name, lore, enchantments, stored enchants and item flags
-     *
+     * <p>
      *
      * @param one first ItemStack to compare against second
      * @param two second ItemStack to compare against first
@@ -524,7 +524,7 @@ public class ItemUtil {
      * Returns a formatted display name. If none exists, returns item name.
      * Also returns formatted durability and amount.
      * Also includes formatted enchantments.
-     * 
+     * <p>
      * Format is ([display]name:durability) with (enchantments:levels) x (amount)
      * 
      * @param is ItemStack to check
@@ -557,7 +557,7 @@ public class ItemUtil {
     
     /**
      * Returns a formatted display name, plus durability and amount. If none exists, returns item name.
-     * 
+     * <p>
      * Format is ([display]name:durability) x (amount)
      * 
      * @param is ItemStack to check

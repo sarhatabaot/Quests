@@ -834,7 +834,7 @@ public class Quests extends JavaPlugin implements QuestsAPI {
 
     /**
      * Load quests, actions, conditions, and modules
-     * 
+     * <p>
      * At startup, this lets soft-depends (namely Citizens) fully load first
      */
     private void delayLoadQuestInfo() {
