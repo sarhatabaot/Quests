@@ -12,17 +12,12 @@
 
 package me.blackvein.quests.nms;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public abstract class ActionBarProvider {
 
-    private static ActionBarProvider loaded;
-
-    static {
-        loaded = new ActionBarProviderBukkit();
-    }
-
+    private static ActionBarProvider loaded = new ActionBarProviderBukkit();
+    
     abstract void sendActionBarPacket(Player player, String message);
 
     /**
