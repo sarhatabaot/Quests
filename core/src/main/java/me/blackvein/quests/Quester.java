@@ -2256,7 +2256,7 @@ public class Quester implements IQuester {
         
         final ObjectiveType type = ObjectiveType.BREAK_BLOCK;
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, broken.getAmount(), toBreak.getAmount()));
+                new BukkitObjective(type, null, broken.getAmount(), toBreak.getAmount()));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final ItemStack newBroken = broken;
@@ -2282,7 +2282,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newBroken.getAmount(), toBreak.getAmount()));
+                new BukkitObjective(type, null, newBroken.getAmount(), toBreak.getAmount()));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
     
@@ -2342,7 +2342,7 @@ public class Quester implements IQuester {
         
         final ObjectiveType type = ObjectiveType.DAMAGE_BLOCK;
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, damaged.getAmount(), toDamage.getAmount()));
+                new BukkitObjective(type, null, damaged.getAmount(), toDamage.getAmount()));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final ItemStack newDamaged = damaged;
@@ -2369,7 +2369,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newDamaged.getAmount(), toDamage.getAmount()));
+                new BukkitObjective(type, null, newDamaged.getAmount(), toDamage.getAmount()));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -2429,7 +2429,7 @@ public class Quester implements IQuester {
         
         final ObjectiveType type = ObjectiveType.PLACE_BLOCK;
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, placed.getAmount(), toPlace.getAmount()));
+                new BukkitObjective(type, null,placed.getAmount(), toPlace.getAmount()));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final ItemStack newPlaced = placed;
@@ -2455,7 +2455,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newPlaced.getAmount(), toPlace.getAmount()));
+                new BukkitObjective(type, null,newPlaced.getAmount(), toPlace.getAmount()));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -2515,7 +2515,7 @@ public class Quester implements IQuester {
         
         final ObjectiveType type = ObjectiveType.USE_BLOCK;
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, used.getAmount(), toUse.getAmount()));
+                new BukkitObjective(type, null,used.getAmount(), toUse.getAmount()));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final ItemStack newUsed = used;
@@ -2541,7 +2541,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newUsed.getAmount(), toUse.getAmount()));
+                new BukkitObjective(type, null,newUsed.getAmount(), toUse.getAmount()));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -2601,7 +2601,7 @@ public class Quester implements IQuester {
         
         final ObjectiveType type = ObjectiveType.CUT_BLOCK;
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, cut.getAmount(), toCut.getAmount()));
+                new BukkitObjective(type, null,cut.getAmount(), toCut.getAmount()));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final ItemStack newCut = cut;
@@ -2626,7 +2626,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newCut.getAmount(), toCut.getAmount()));
+                new BukkitObjective(type, null,newCut.getAmount(), toCut.getAmount()));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
     
@@ -2656,7 +2656,7 @@ public class Quester implements IQuester {
 
             final ObjectiveType type = ObjectiveType.CRAFT_ITEM;
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, amount, toCraft));
+                    new BukkitObjective(type, null,amount, toCraft));
             plugin.getServer().getPluginManager().callEvent(preEvent);
 
             final int newAmount = itemStack.getAmount() + amount;
@@ -2683,7 +2683,7 @@ public class Quester implements IQuester {
             }
 
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, newAmount, toCraft));
+                    new BukkitObjective(type, null,newAmount, toCraft));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -2714,7 +2714,7 @@ public class Quester implements IQuester {
 
             final ObjectiveType type = ObjectiveType.SMELT_ITEM;
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, amount, toSmelt));
+                    new BukkitObjective(type, null,amount, toSmelt));
             plugin.getServer().getPluginManager().callEvent(preEvent);
 
             final int newAmount = itemStack.getAmount() + amount;
@@ -2741,7 +2741,7 @@ public class Quester implements IQuester {
             }
 
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, newAmount, toSmelt));
+                    new BukkitObjective(type, null,newAmount, toSmelt));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -2775,7 +2775,7 @@ public class Quester implements IQuester {
 
             final ObjectiveType type = ObjectiveType.ENCHANT_ITEM;
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, amount, toEnchant));
+                    new BukkitObjective(type, null,amount, toEnchant));
             plugin.getServer().getPluginManager().callEvent(preEvent);
 
             final int newAmount = itemStack.getAmount() + amount;
@@ -2802,7 +2802,7 @@ public class Quester implements IQuester {
             }
 
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, itemStack.getAmount() + amount, toEnchant));
+                    new BukkitObjective(type, null,itemStack.getAmount() + amount, toEnchant));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -2841,7 +2841,7 @@ public class Quester implements IQuester {
 
             final ObjectiveType type = ObjectiveType.ENCHANT_ITEM;
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, amount, toEnchant));
+                    new BukkitObjective(type, null,amount, toEnchant));
             plugin.getServer().getPluginManager().callEvent(preEvent);
 
             final int newAmount = itemStack.getAmount() + amount;
@@ -2868,7 +2868,7 @@ public class Quester implements IQuester {
             }
 
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, itemStack.getAmount() + amount, toEnchant));
+                    new BukkitObjective(type, null,itemStack.getAmount() + amount, toEnchant));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -2899,7 +2899,7 @@ public class Quester implements IQuester {
 
             final ObjectiveType type = ObjectiveType.BREW_ITEM;
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, amount, toBrew));
+                    new BukkitObjective(type, null,amount, toBrew));
             plugin.getServer().getPluginManager().callEvent(preEvent);
 
             final int newAmount = itemStack.getAmount() + amount;
@@ -2926,7 +2926,7 @@ public class Quester implements IQuester {
             }
 
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, newAmount, toBrew));
+                    new BukkitObjective(type, null,newAmount, toBrew));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -2957,7 +2957,7 @@ public class Quester implements IQuester {
             
             final ObjectiveType type = ObjectiveType.CONSUME_ITEM;
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                    new BukkitObjective(type, amount, toConsume));
+                    new BukkitObjective(type, null,amount, toConsume));
             plugin.getServer().getPluginManager().callEvent(preEvent);
             
             final int newAmount = itemStack.getAmount() + amount;
@@ -2984,7 +2984,7 @@ public class Quester implements IQuester {
             }
             
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                    new BukkitObjective(type, newAmount, toConsume));
+                    new BukkitObjective(type, null,newAmount, toConsume));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -3025,7 +3025,7 @@ public class Quester implements IQuester {
             final ObjectiveType type = ObjectiveType.DELIVER_ITEM;
             final Set<String> dispatchedQuestIDs = new HashSet<>();
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                    new BukkitObjective(type, amount, toDeliver));
+                    new BukkitObjective(type, null,amount, toDeliver));
             plugin.getServer().getPluginManager().callEvent(preEvent);
             
             final int newAmount = itemStack.getAmount() + amount;
@@ -3076,7 +3076,7 @@ public class Quester implements IQuester {
             }
             
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                    new BukkitObjective(type, newAmount, toDeliver));
+                    new BukkitObjective(type, null,newAmount, toDeliver));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -3098,7 +3098,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.TALK_TO_NPC;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                new BukkitObjective(type, 1, 1));
+                new BukkitObjective(type,null, 1, 1));
         plugin.getServer().getPluginManager().callEvent(preEvent);
 
         if (!npcsInteracted) {
@@ -3118,7 +3118,7 @@ public class Quester implements IQuester {
                     }));
             
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                    new BukkitObjective(type, 1, 1));
+                    new BukkitObjective(type, null,1, 1));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         }
     }
@@ -3141,7 +3141,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.KILL_NPC;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, npcsKilled, npcsToKill));
+                new BukkitObjective(type,null, npcsKilled, npcsToKill));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newNpcsKilled = getQuestData(quest).npcsNumKilled.get(index) + 1;
@@ -3165,7 +3165,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newNpcsKilled, npcsToKill));
+                new BukkitObjective(type, null,newNpcsKilled, npcsToKill));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
     
@@ -3193,7 +3193,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.MILK_COW;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, cowsMilked, cowsToMilk));
+                new BukkitObjective(type,null, cowsMilked, cowsToMilk));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newCowsMilked = cowsMilked + 1;
@@ -3218,7 +3218,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newCowsMilked, cowsToMilk));
+                new BukkitObjective(type,null, newCowsMilked, cowsToMilk));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
     
@@ -3246,7 +3246,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.CATCH_FISH;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, fishCaught, fishToCatch));
+                new BukkitObjective(type, null,fishCaught, fishToCatch));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newFishCaught = fishCaught + 1;
@@ -3271,7 +3271,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newFishCaught, fishToCatch));
+                new BukkitObjective(type, null,newFishCaught, fishToCatch));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -3322,7 +3322,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.KILL_MOB;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, mobsKilled, mobsToKill));
+                new BukkitObjective(type, null,mobsKilled, mobsToKill));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newMobsKilled = mobsKilled + 1;
@@ -3346,7 +3346,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newMobsKilled, mobsToKill));
+                new BukkitObjective(type, null,newMobsKilled, mobsToKill));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -3375,7 +3375,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.KILL_PLAYER;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, playersKilled, playersToKill));
+                new BukkitObjective(type, null,playersKilled, playersToKill));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newPlayersKilled = playersKilled + 1;
@@ -3399,7 +3399,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newPlayersKilled, playersToKill));
+                new BukkitObjective(type, null,newPlayersKilled, playersToKill));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -3443,7 +3443,7 @@ public class Quester implements IQuester {
                         final Set<String> dispatchedQuestIDs = new HashSet<>();
                         final QuesterPreUpdateObjectiveEvent preEvent 
                                 = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                                new BukkitObjective(type, locationsReached, locationsToReach));
+                                new BukkitObjective(type, null,locationsReached, locationsToReach));
                         plugin.getServer().getPluginManager().callEvent(preEvent);
                         
                         getQuestData(quest).locationsReached.set(index, true);
@@ -3464,7 +3464,7 @@ public class Quester implements IQuester {
                         
                         final QuesterPostUpdateObjectiveEvent postEvent 
                                 = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                                new BukkitObjective(type, locationsReached + 1, locationsToReach));
+                                new BukkitObjective(type, null,locationsReached + 1, locationsToReach));
                         plugin.getServer().getPluginManager().callEvent(postEvent);
                         
                         break;
@@ -3511,7 +3511,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.TAME_MOB;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                new BukkitObjective(type, mobsToTame, mobsTamed));
+                new BukkitObjective(type,null, mobsToTame, mobsTamed));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newMobsToTame = mobsTamed + 1;
@@ -3535,7 +3535,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newMobsToTame, mobsTamed));
+                new BukkitObjective(type, null,newMobsToTame, mobsTamed));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -3566,7 +3566,7 @@ public class Quester implements IQuester {
         final ObjectiveType type = ObjectiveType.SHEAR_SHEEP;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, sheepSheared, sheepToShear));
+                new BukkitObjective(type, null,sheepSheared, sheepToShear));
         plugin.getServer().getPluginManager().callEvent(preEvent);
         
         final int newSheepSheared = sheepSheared + 1;
@@ -3590,7 +3590,7 @@ public class Quester implements IQuester {
         }
         
         final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest, 
-                new BukkitObjective(type, newSheepSheared, sheepToShear));
+                new BukkitObjective(type, null,newSheepSheared, sheepToShear));
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
@@ -3605,7 +3605,7 @@ public class Quester implements IQuester {
         final Set<String> dispatchedQuestIDs = new HashSet<>();
         plugin.getServer().getScheduler().runTask(plugin, () -> {
             final QuesterPreUpdateObjectiveEvent preEvent = new QuesterPreUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, 1, 1));
+                    new BukkitObjective(type,null, 1, 1));
             plugin.getServer().getPluginManager().callEvent(preEvent);
 
             int index = 0;
@@ -3634,7 +3634,7 @@ public class Quester implements IQuester {
             }
 
             final QuesterPostUpdateObjectiveEvent postEvent = new QuesterPostUpdateObjectiveEvent(this, quest,
-                    new BukkitObjective(type, 1, 1));
+                    new BukkitObjective(type, null,1, 1));
             plugin.getServer().getPluginManager().callEvent(postEvent);
         });
     }

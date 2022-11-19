@@ -238,7 +238,7 @@ public class CustomObjective implements ICustomObjective, Listener {
 
                     final ObjectiveType type = ObjectiveType.CUSTOM;
                     final QuesterPreUpdateObjectiveEvent preEvent
-                            = new QuesterPreUpdateObjectiveEvent(quester, quest, new BukkitObjective(type, progress, goal));
+                            = new QuesterPreUpdateObjectiveEvent(quester, quest, new BukkitObjective(type, null,progress, goal));
                     plugin.getServer().getPluginManager().callEvent(preEvent);
 
                     if (progress >= goal) {
@@ -257,7 +257,7 @@ public class CustomObjective implements ICustomObjective, Listener {
                     }
 
                     final QuesterPostUpdateObjectiveEvent postEvent
-                            = new QuesterPostUpdateObjectiveEvent(quester, quest, new BukkitObjective(type, progress, goal));
+                            = new QuesterPostUpdateObjectiveEvent(quester, quest, new BukkitObjective(type, null,progress, goal));
                     plugin.getServer().getPluginManager().callEvent(postEvent);
                 }
             }
