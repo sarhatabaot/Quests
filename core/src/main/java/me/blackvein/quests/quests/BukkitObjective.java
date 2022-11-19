@@ -49,7 +49,7 @@ public class BukkitObjective implements Objective {
         this.progressObj = progress;
         this.goalObj = goal;
     }
-    
+
     public BukkitObjective(final ObjectiveType type, @Nullable final String message, final int progress,
                            final int goal) {
         this.type = type;
@@ -59,27 +59,37 @@ public class BukkitObjective implements Objective {
         this.progressObj = new Object();
         this.goalObj = new Object();
     }
-    
+
     public BukkitObjective(final ObjectiveType type, @Nullable final String message, final @NotNull Object progress,
                            final @NotNull Object goal) {
         this.type = type;
         this.message = message;
         this.progressObj = progress;
         this.goalObj = goal;
-        if (progressObj instanceof ItemStack) {
-            this.progress = ((ItemStack) progressObj).getAmount();
-        } else if (progressObj instanceof CountableMob) {
-            this.progress = ((CountableMob) progressObj).getCount();
-        } else {
-            this.progress = 0;
+        this.progress = getProgressCount();
+        this.goal = getGoalCount();
+    }
+
+    private int getGoalCount() {
+        if (goalObj instanceof ItemStack goalItem) {
+            return goalItem.getAmount();
         }
-        if (goalObj instanceof ItemStack) {
-            this.goal = ((ItemStack) goalObj).getAmount();
-        }  else if (goalObj instanceof CountableMob) {
-            this.goal = ((CountableMob) goalObj).getCount();
-        } else {
-            this.goal = 0;
+        if (goalObj instanceof CountableMob goalMob) {
+            return goalMob.getCount();
         }
+        return 0;
+
+    }
+
+
+    private int getProgressCount() {
+        if (progressObj instanceof ItemStack progressItem) {
+            return progressItem.getAmount();
+        }
+        if (progressObj instanceof CountableMob progressMob) {
+            return progressMob.getCount();
+        }
+        return 0;
     }
 
     @Override
@@ -111,11 +121,11 @@ public class BukkitObjective implements Objective {
     public @NotNull Object getGoalObject() {
         return goalObj;
     }
-    
+
     public @Nullable ItemStack getProgressAsItem() {
         return progressObj instanceof ItemStack ? (ItemStack) progressObj : null;
     }
-    
+
     public @Nullable ItemStack getGoalAsItem() {
         return goalObj instanceof ItemStack ? (ItemStack) goalObj : null;
     }
