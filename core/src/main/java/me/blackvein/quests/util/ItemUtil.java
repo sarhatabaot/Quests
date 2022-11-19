@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-@SuppressWarnings("deprecation")
 public class ItemUtil {
 
     /**
@@ -89,9 +88,11 @@ public class ItemUtil {
         }
         if (!one.getType().name().equals(two.getType().name())) {
             return -1;
-        } else if ((one.getAmount() != two.getAmount()) && !ignoreAmount) {
+        }
+        if ((one.getAmount() != two.getAmount()) && !ignoreAmount) {
             return -2;
-        } else if ((one.getDurability() != two.getDurability()) && !ignoreDurability) {
+        }
+        if ((one.getDurability() != two.getDurability()) && !ignoreDurability) {
             if (one.getDurability() < 999 && two.getDurability() < 999) { // wildcard value
                 return -3;
             }
@@ -170,16 +171,6 @@ public class ItemUtil {
                     }
                 } else {
                     return -10;
-                }
-            }
-        }
-        if (Material.getMaterial("LINGERING_POTION") == null) {
-            if (one.getType().equals(Material.POTION)) {
-                // Bukkit version is below 1.9
-                final Potion pot1 = new Potion(one.getDurability());
-                final Potion pot2 = new Potion(two.getDurability());
-                if (!pot1.getType().equals(pot2.getType())) {
-                    return -9;
                 }
             }
         }
