@@ -142,7 +142,6 @@ public class BukkitQuestFactory implements QuestFactory, ConversationAbandonedLi
         return new QuestMainPrompt(context);
     }
 
-    @SuppressWarnings("deprecation")
     public void loadQuest(final ConversationContext context, final IQuest q) {
         try {
             context.setSessionData(CK.ED_QUEST_EDIT, q.getName());
@@ -568,8 +567,8 @@ public class BukkitQuestFactory implements QuestFactory, ConversationAbandonedLi
         plugin.reload(callback);
         context.getForWhom().sendRawMessage(ChatColor.GREEN + Lang.get("questDeleted"));
         if (plugin.getSettings().getConsoleLogging() > 0) {
-            final String identifier = context.getForWhom() instanceof Player ?
-                    "Player " + ((Player)context.getForWhom()).getUniqueId() : "CONSOLE";
+            final String identifier = context.getForWhom() instanceof Player player ?
+                    "Player " + player.getUniqueId() : "CONSOLE";
             plugin.getLogger().info(identifier + " deleted quest " + quest);
         }
     }
@@ -616,8 +615,8 @@ public class BukkitQuestFactory implements QuestFactory, ConversationAbandonedLi
         savePlanner(context, section);
         saveOptions(context, section);
         if (plugin.getSettings().getConsoleLogging() > 0) {
-            final String identifier = context.getForWhom() instanceof Player ?
-                    "Player " + ((Player)context.getForWhom()).getUniqueId() : "CONSOLE";
+            final String identifier = context.getForWhom() instanceof Player player ?
+                    "Player " + player.getUniqueId() : "CONSOLE";
             plugin.getLogger().info(identifier + " saved quest " + context.getSessionData(CK.Q_NAME));
         }
     }
