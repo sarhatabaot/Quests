@@ -20,13 +20,14 @@ import java.util.List;
 public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
 
     private final BlocksPrompt blocksPrompt;
+    private final int size = 5;
 
     public BlocksPlaceListPrompt(final BlocksPrompt blocksPrompt, final ConversationContext context) {
         super(context);
         this.blocksPrompt = blocksPrompt;
     }
 
-    private final int size = 5;
+
 
     @Override
     public int getSize() {
@@ -65,9 +66,9 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
     public String getAdditionalText(final ConversationContext context, final int number) {
         switch (number) {
             case 1:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_PLACE_NAMES) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_NAMES) != null) {
                     final StringBuilder text = new StringBuilder();
-                    final List<String> placeNames = (List<String>) context.getSessionData(blocksPrompt.pref + CK.S_PLACE_NAMES);
+                    final List<String> placeNames = (List<String>) context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_NAMES);
                     if (placeNames != null) {
                         for (final String s : placeNames) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA)
@@ -79,10 +80,10 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
                     return "";
                 }
             case 2:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_PLACE_AMOUNTS) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_AMOUNTS) != null) {
                     final StringBuilder text = new StringBuilder();
                     final List<Integer> placeAmounts
-                            = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_PLACE_AMOUNTS);
+                            = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_AMOUNTS);
                     if (placeAmounts != null) {
                         for (final Integer i : placeAmounts) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA).append(i);
@@ -93,10 +94,10 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
                     return "";
                 }
             case 3:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_PLACE_DURABILITY) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_DURABILITY) != null) {
                     final StringBuilder text = new StringBuilder();
                     final List<Short> placeDurability
-                            = (List<Short>) context.getSessionData(blocksPrompt.pref + CK.S_PLACE_DURABILITY);
+                            = (List<Short>) context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_DURABILITY);
                     if (placeDurability != null) {
                         for (final Short s : placeDurability) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA).append(s);
@@ -106,8 +107,7 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
                 } else {
                     return "";
                 }
-            case 4:
-            case 5:
+            case 4, 5:
                 return "";
             default:
                 return null;
@@ -136,22 +136,22 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
     protected Prompt acceptValidatedInput(final @NotNull ConversationContext context, final Number input) {
         switch (input.intValue()) {
             case 1:
-                return new BlockPlaceNamesPrompt(BlocksPrompt.this, context);
+                return new BlockPlaceNamesPrompt(blocksPrompt, context);
             case 2:
-                return new BlockPlaceAmountsPrompt(BlocksPrompt.this, context);
+                return new BlockPlaceAmountsPrompt(blocksPrompt, context);
             case 3:
-                return new BlockPlaceDurabilityPrompt(BlocksPrompt.this, context);
+                return new BlockPlaceDurabilityPrompt(blocksPrompt, context);
             case 4:
                 context.getForWhom().sendRawMessage(ChatColor.YELLOW + Lang.get("stageEditorObjectiveCleared"));
-                context.setSessionData(blocksPrompt.pref + CK.S_PLACE_NAMES, null);
-                context.setSessionData(blocksPrompt.pref + CK.S_PLACE_AMOUNTS, null);
-                context.setSessionData(blocksPrompt.pref + CK.S_PLACE_DURABILITY, null);
-                return new BlocksPlaceListPrompt(context);
+                context.setSessionData(blocksPrompt.pref() + CK.S_PLACE_NAMES, null);
+                context.setSessionData(blocksPrompt.pref() + CK.S_PLACE_AMOUNTS, null);
+                context.setSessionData(blocksPrompt.pref() + CK.S_PLACE_DURABILITY, null);
+                return new BlocksPlaceListPrompt(blocksPrompt,context);
             case 5:
                 final int one;
                 final int two;
-                final List<Integer> names = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_PLACE_NAMES);
-                final List<Integer> amounts = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_PLACE_AMOUNTS);
+                final List<Integer> names = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_NAMES);
+                final List<Integer> amounts = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_AMOUNTS);
                 if (names != null) {
                     one = names.size();
                 } else {
@@ -165,7 +165,7 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
                 if (one == two) {
                     final int missing;
                     LinkedList<Short> durability
-                            = (LinkedList<Short>) context.getSessionData(blocksPrompt.pref + CK.S_PLACE_DURABILITY);
+                            = (LinkedList<Short>) context.getSessionData(blocksPrompt.pref() + CK.S_PLACE_DURABILITY);
                     if (durability != null) {
                         missing = one - durability.size();
                     } else {
@@ -175,14 +175,14 @@ public class BlocksPlaceListPrompt extends QuestsEditorNumericPrompt {
                     for (int i = 0; i < missing; i++) {
                         durability.add((short) 0);
                     }
-                    context.setSessionData(blocksPrompt.pref + CK.S_PLACE_DURABILITY, durability);
-                    return new BlocksPrompt(blocksPrompt.stageNum, context);
+                    context.setSessionData(blocksPrompt.pref() + CK.S_PLACE_DURABILITY, durability);
+                    return new BlocksPrompt(blocksPrompt.stageNum(), context);
                 } else {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("listsNotSameSize"));
-                    return new BlocksPlaceListPrompt(context);
+                    return new BlocksPlaceListPrompt(blocksPrompt,context);
                 }
             default:
-                return new BlocksPrompt(blocksPrompt.stageNum, context);
+                return new BlocksPrompt(blocksPrompt.stageNum(), context);
         }
     }
 }

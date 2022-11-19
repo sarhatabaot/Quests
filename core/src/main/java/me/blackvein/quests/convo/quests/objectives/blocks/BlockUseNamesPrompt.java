@@ -64,24 +64,24 @@ public class BlockUseNamesPrompt extends QuestsEditorStringPrompt {
                         } else {
                             context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotSolid")
                                     .replace("<input>", s));
-                            return new BlockUseNamesPrompt(context);
+                            return new BlockUseNamesPrompt(blocksPrompt,context);
                         }
                     } else {
                         context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorInvalidBlockName")
                                 .replace("<input>", s));
-                        return new BlockUseNamesPrompt(context);
+                        return new BlockUseNamesPrompt(blocksPrompt,context);
                     }
                 } catch (final NumberFormatException e) {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotListOfNumbers")
                             .replace("<data>", s));
-                    return new BlockUseNamesPrompt(context);
+                    return new BlockUseNamesPrompt(blocksPrompt,context);
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_USE_NAMES, names);
+            context.setSessionData(blocksPrompt.pref() + CK.S_USE_NAMES, names);
 
             LinkedList<Integer> amounts = new LinkedList<>();
-            if (context.getSessionData(blocksPrompt.pref + CK.S_USE_AMOUNTS) != null) {
-                amounts = (LinkedList<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_USE_AMOUNTS);
+            if (context.getSessionData(blocksPrompt.pref() + CK.S_USE_AMOUNTS) != null) {
+                amounts = (LinkedList<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_USE_AMOUNTS);
             }
             for (int i = 0; i < names.size(); i++) {
                 if (amounts != null) {
@@ -90,7 +90,7 @@ public class BlockUseNamesPrompt extends QuestsEditorStringPrompt {
                     }
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_USE_AMOUNTS, amounts);
+            context.setSessionData(blocksPrompt.pref() + CK.S_USE_AMOUNTS, amounts);
         }
         return new BlocksUseListPrompt(blocksPrompt, context);
     }

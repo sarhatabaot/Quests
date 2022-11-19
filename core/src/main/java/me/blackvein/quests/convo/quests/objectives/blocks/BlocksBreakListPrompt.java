@@ -65,9 +65,9 @@ public class BlocksBreakListPrompt extends QuestsEditorNumericPrompt {
     public String getAdditionalText(final ConversationContext context, final int number) {
         switch (number) {
             case 1:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_BREAK_NAMES) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_NAMES) != null) {
                     final StringBuilder text = new StringBuilder();
-                    final List<String> breakNames = (List<String>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_NAMES);
+                    final List<String> breakNames = (List<String>) context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_NAMES);
                     if (breakNames != null) {
                         for (final String s : breakNames) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA)
@@ -79,10 +79,10 @@ public class BlocksBreakListPrompt extends QuestsEditorNumericPrompt {
                     return "";
                 }
             case 2:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS) != null) {
                     final StringBuilder text = new StringBuilder();
                     final List<Integer> breakAmounts
-                            = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS);
+                            = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS);
                     if (breakAmounts != null) {
                         for (final Integer i : breakAmounts) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA).append(i);
@@ -93,10 +93,10 @@ public class BlocksBreakListPrompt extends QuestsEditorNumericPrompt {
                     return "";
                 }
             case 3:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_BREAK_DURABILITY) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_DURABILITY) != null) {
                     final StringBuilder text = new StringBuilder();
                     final List<Short> breakDurability
-                            = (List<Short>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_DURABILITY);
+                            = (List<Short>) context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_DURABILITY);
                     if (breakDurability != null) {
                         for (final Short s : breakDurability) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA).append(s);
@@ -137,22 +137,22 @@ public class BlocksBreakListPrompt extends QuestsEditorNumericPrompt {
     protected Prompt acceptValidatedInput(final @NotNull ConversationContext context, final Number input) {
         switch (input.intValue()) {
             case 1:
-                return new BlockBreakNamesPrompt(BlocksPrompt.this, context);
+                return new BlockBreakNamesPrompt(blocksPrompt, context);
             case 2:
-                return new BlockBreakAmountsPrompt(BlocksPrompt.this, context);
+                return new BlockBreakAmountsPrompt(blocksPrompt, context);
             case 3:
-                return new BlockBreakDurabilityPrompt(BlocksPrompt.this, context);
+                return new BlockBreakDurabilityPrompt(blocksPrompt, context);
             case 4:
                 context.getForWhom().sendRawMessage(ChatColor.YELLOW + Lang.get("stageEditorObjectiveCleared"));
-                context.setSessionData(blocksPrompt.pref + CK.S_BREAK_NAMES, null);
-                context.setSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS, null);
-                context.setSessionData(blocksPrompt.pref + CK.S_BREAK_DURABILITY, null);
-                return new BlocksBreakListPrompt(context);
+                context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_NAMES, null);
+                context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS, null);
+                context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_DURABILITY, null);
+                return new BlocksBreakListPrompt(blocksPrompt,context);
             case 5:
                 final int one;
                 final int two;
-                final List<Integer> names = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_NAMES);
-                final List<Integer> amounts = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS);
+                final List<Integer> names = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_NAMES);
+                final List<Integer> amounts = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS);
                 if (names != null) {
                     one = names.size();
                 } else {
@@ -166,7 +166,7 @@ public class BlocksBreakListPrompt extends QuestsEditorNumericPrompt {
                 if (one == two) {
                     final int missing;
                     LinkedList<Short> durability
-                            = (LinkedList<Short>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_DURABILITY);
+                            = (LinkedList<Short>) context.getSessionData(blocksPrompt.pref()+ CK.S_BREAK_DURABILITY);
                     if (durability != null) {
                         missing = one - durability.size();
                     } else {
@@ -176,14 +176,14 @@ public class BlocksBreakListPrompt extends QuestsEditorNumericPrompt {
                     for (int i = 0; i < missing; i++) {
                         durability.add((short) 0);
                     }
-                    context.setSessionData(blocksPrompt.pref + CK.S_BREAK_DURABILITY, durability);
-                    return new BlocksPrompt(blocksPrompt.stageNum, context);
+                    context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_DURABILITY, durability);
+                    return new BlocksPrompt(blocksPrompt.stageNum(), context);
                 } else {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("listsNotSameSize"));
-                    return new BlocksBreakListPrompt(context);
+                    return new BlocksBreakListPrompt(blocksPrompt,context);
                 }
             default:
-                return new BlocksPrompt(blocksPrompt.stageNum, context);
+                return new BlocksPrompt(blocksPrompt.stageNum(), context);
         }
     }
 }

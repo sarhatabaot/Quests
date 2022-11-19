@@ -64,24 +64,24 @@ public class BlockDamageNamesPrompt extends QuestsEditorStringPrompt {
                         } else {
                             context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotSolid")
                                     .replace("<input>", s));
-                            return new BlockDamageNamesPrompt(context);
+                            return new BlockDamageNamesPrompt(blocksPrompt,context);
                         }
                     } else {
                         context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorInvalidBlockName")
                                 .replace("<input>", s));
-                        return new BlockDamageNamesPrompt(context);
+                        return new BlockDamageNamesPrompt(blocksPrompt,context);
                     }
                 } catch (final NumberFormatException e) {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotListOfNumbers")
                             .replace("<data>", s));
-                    return new BlockDamageNamesPrompt(context);
+                    return new BlockDamageNamesPrompt(blocksPrompt,context);
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_DAMAGE_NAMES, names);
+            context.setSessionData(blocksPrompt.pref() + CK.S_DAMAGE_NAMES, names);
 
             LinkedList<Integer> amounts = new LinkedList<>();
-            if (context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS) != null) {
-                amounts = (LinkedList<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS);
+            if (context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS) != null) {
+                amounts = (LinkedList<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS);
             }
             for (int i = 0; i < names.size(); i++) {
                 if (amounts != null) {
@@ -90,7 +90,7 @@ public class BlockDamageNamesPrompt extends QuestsEditorStringPrompt {
                     }
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS, amounts);
+            context.setSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS, amounts);
         }
         return new BlocksDamageListPrompt(blocksPrompt, context);
     }

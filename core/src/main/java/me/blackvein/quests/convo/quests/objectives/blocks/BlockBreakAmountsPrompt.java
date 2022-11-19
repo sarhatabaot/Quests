@@ -61,15 +61,15 @@ public class BlockBreakAmountsPrompt extends QuestsEditorStringPrompt {
                     } else {
                         context.getForWhom().sendRawMessage(ChatColor.RED
                                 + Lang.get("invalidMinimum").replace("<number>", "1"));
-                        return new BlockBreakAmountsPrompt(context);
+                        return new BlockBreakAmountsPrompt(blocksPrompt, context);
                     }
                 } catch (final NumberFormatException e) {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotListOfNumbers")
                             .replace("<data>", s));
-                    return new BlockBreakAmountsPrompt(context);
+                    return new BlockBreakAmountsPrompt(blocksPrompt, context);
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS, amounts);
+            context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS, amounts);
         }
         return new BlocksBreakListPrompt(blocksPrompt, context);
     }

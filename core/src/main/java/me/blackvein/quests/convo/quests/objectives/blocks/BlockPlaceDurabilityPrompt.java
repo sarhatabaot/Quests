@@ -60,15 +60,15 @@ public class BlockPlaceDurabilityPrompt extends QuestsEditorStringPrompt {
                     } else {
                         context.getForWhom().sendRawMessage(ChatColor.RED
                                 + Lang.get("invalidMinimum").replace("<number>", "0"));
-                        return new BlockPlaceDurabilityPrompt(context);
+                        return new BlockPlaceDurabilityPrompt(blocksPrompt,context);
                     }
                 } catch (final NumberFormatException e) {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotListOfNumbers")
                             .replace("<data>", s));
-                    return new BlockPlaceDurabilityPrompt(context);
+                    return new BlockPlaceDurabilityPrompt(blocksPrompt,context);
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_PLACE_DURABILITY, durability);
+            context.setSessionData(blocksPrompt.pref() + CK.S_PLACE_DURABILITY, durability);
         }
         return new BlocksPlaceListPrompt(blocksPrompt, context);
     }

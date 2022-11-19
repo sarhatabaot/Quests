@@ -65,9 +65,9 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
     public String getAdditionalText(final ConversationContext context, final int number) {
         switch (number) {
             case 1:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_NAMES) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_NAMES) != null) {
                     final StringBuilder text = new StringBuilder();
-                    final List<String> damageNames = (List<String>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_NAMES);
+                    final List<String> damageNames = (List<String>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_NAMES);
                     if (damageNames != null) {
                         for (final String s : damageNames) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA)
@@ -79,10 +79,10 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
                     return "";
                 }
             case 2:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS) != null) {
                     final StringBuilder text = new StringBuilder();
                     final List<Integer> damageAmounts
-                            = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS);
+                            = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS);
                     if (damageAmounts != null) {
                         for (final Integer i : damageAmounts) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA).append(i);
@@ -93,10 +93,10 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
                     return "";
                 }
             case 3:
-                if (context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_DURABILITY) != null) {
+                if (context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_DURABILITY) != null) {
                     final StringBuilder text = new StringBuilder();
                     final List<Short> damageDurability
-                            = (List<Short>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_DURABILITY);
+                            = (List<Short>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_DURABILITY);
                     if (damageDurability != null) {
                         for (final Short s : damageDurability) {
                             text.append("\n").append(ChatColor.GRAY).append("     - ").append(ChatColor.AQUA).append(s);
@@ -106,8 +106,7 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
                 } else {
                     return "";
                 }
-            case 4:
-            case 5:
+            case 4, 5:
                 return "";
             default:
                 return null;
@@ -136,22 +135,22 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
     protected Prompt acceptValidatedInput(final @NotNull ConversationContext context, final Number input) {
         switch (input.intValue()) {
             case 1:
-                return new BlockDamageNamesPrompt(BlocksPrompt.this, context);
+                return new BlockDamageNamesPrompt(blocksPrompt, context);
             case 2:
-                return new BlockDamageAmountsPrompt(BlocksPrompt.this, context);
+                return new BlockDamageAmountsPrompt(blocksPrompt, context);
             case 3:
-                return new BlockDamageDurabilityPrompt(BlocksPrompt.this, context);
+                return new BlockDamageDurabilityPrompt(blocksPrompt, context);
             case 4:
                 context.getForWhom().sendRawMessage(ChatColor.YELLOW + Lang.get("stageEditorObjectiveCleared"));
-                context.setSessionData(blocksPrompt.pref + CK.S_DAMAGE_NAMES, null);
-                context.setSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS, null);
-                context.setSessionData(blocksPrompt.pref + CK.S_DAMAGE_DURABILITY, null);
-                return new BlocksDamageListPrompt(context);
+                context.setSessionData(blocksPrompt.pref() + CK.S_DAMAGE_NAMES, null);
+                context.setSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS, null);
+                context.setSessionData(blocksPrompt.pref() + CK.S_DAMAGE_DURABILITY, null);
+                return new BlocksDamageListPrompt(blocksPrompt, context);
             case 5:
                 final int one;
                 final int two;
-                final List<Integer> names = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_NAMES);
-                final List<Integer> amounts = (List<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_AMOUNTS);
+                final List<Integer> names = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_NAMES);
+                final List<Integer> amounts = (List<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_AMOUNTS);
                 if (names != null) {
                     one = names.size();
                 } else {
@@ -165,7 +164,7 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
                 if (one == two) {
                     final int missing;
                     LinkedList<Short> durability
-                            = (LinkedList<Short>) context.getSessionData(blocksPrompt.pref + CK.S_DAMAGE_DURABILITY);
+                            = (LinkedList<Short>) context.getSessionData(blocksPrompt.pref() + CK.S_DAMAGE_DURABILITY);
                     if (durability != null) {
                         missing = one - durability.size();
                     } else {
@@ -175,14 +174,14 @@ public class BlocksDamageListPrompt extends QuestsEditorNumericPrompt {
                     for (int i = 0; i < missing; i++) {
                         durability.add((short) 0);
                     }
-                    context.setSessionData(blocksPrompt.pref + CK.S_DAMAGE_DURABILITY, durability);
-                    return new BlocksPrompt(blocksPrompt.stageNum, context);
+                    context.setSessionData(blocksPrompt.pref() + CK.S_DAMAGE_DURABILITY, durability);
+                    return new BlocksPrompt(blocksPrompt.stageNum(), context);
                 } else {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("listsNotSameSize"));
-                    return new BlocksDamageListPrompt(context);
+                    return new BlocksDamageListPrompt(blocksPrompt, context);
                 }
             default:
-                return new BlocksPrompt(blocksPrompt.stageNum, context);
+                return new BlocksPrompt(blocksPrompt.stageNum(), context);
         }
     }
 }

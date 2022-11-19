@@ -64,24 +64,24 @@ public class BlockBreakNamesPrompt extends QuestsEditorStringPrompt {
                         } else {
                             context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotSolid")
                                     .replace("<input>", s));
-                            return new BlockBreakNamesPrompt(context);
+                            return new BlockBreakNamesPrompt(blocksPrompt,context);
                         }
                     } else {
                         context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorInvalidBlockName")
                                 .replace("<input>", s));
-                        return new BlockBreakNamesPrompt(context);
+                        return new BlockBreakNamesPrompt(blocksPrompt,context);
                     }
                 } catch (final NumberFormatException e) {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotListOfNumbers")
                             .replace("<data>", s));
-                    return new BlockBreakNamesPrompt(context);
+                    return new BlockBreakNamesPrompt(blocksPrompt,context);
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_BREAK_NAMES, names);
+            context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_NAMES, names);
 
             LinkedList<Integer> amounts = new LinkedList<>();
-            if (context.getSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS) != null) {
-                amounts = (LinkedList<Integer>) context.getSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS);
+            if (context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS) != null) {
+                amounts = (LinkedList<Integer>) context.getSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS);
             }
             for (int i = 0; i < names.size(); i++) {
                 if (amounts != null) {
@@ -90,7 +90,7 @@ public class BlockBreakNamesPrompt extends QuestsEditorStringPrompt {
                     }
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_BREAK_AMOUNTS, amounts);
+            context.setSessionData(blocksPrompt.pref() + CK.S_BREAK_AMOUNTS, amounts);
         }
         return new BlocksBreakListPrompt(blocksPrompt, context);
     }

@@ -196,4 +196,11 @@ public class BlocksPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
+    public String pref() {
+        return pref;
+    }
+
+    public int stageNum() {
+        return stageNum;
+    }
 }

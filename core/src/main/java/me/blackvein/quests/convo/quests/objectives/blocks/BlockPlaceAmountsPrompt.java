@@ -60,15 +60,15 @@ public class BlockPlaceAmountsPrompt extends QuestsEditorStringPrompt {
                     } else {
                         context.getForWhom().sendRawMessage(ChatColor.RED
                                 + Lang.get("invalidMinimum").replace("<number>", "1"));
-                        return new BlockPlaceAmountsPrompt(context);
+                        return new BlockPlaceAmountsPrompt(blocksPrompt,context);
                     }
                 } catch (final NumberFormatException e) {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("stageEditorNotListOfNumbers")
                             .replace("<data>", s));
-                    return new BlockPlaceAmountsPrompt(context);
+                    return new BlockPlaceAmountsPrompt(blocksPrompt,context);
                 }
             }
-            context.setSessionData(blocksPrompt.pref + CK.S_PLACE_AMOUNTS, amounts);
+            context.setSessionData(blocksPrompt.pref() + CK.S_PLACE_AMOUNTS, amounts);
         }
         return new BlocksPlaceListPrompt(blocksPrompt, context);
     }
