@@ -59,45 +59,27 @@ public class ConditionMainPrompt extends ConditionsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-            return ChatColor.BLUE;
-        case 7:
-            return ChatColor.GREEN;
-        case 8:
-            return ChatColor.RED;
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1, 2, 3, 4, 5, 6 -> ChatColor.BLUE;
+            case 7 -> ChatColor.GREEN;
+            case 8 -> ChatColor.RED;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-            return ChatColor.YELLOW + Lang.get("conditionEditorSetName");
-        case 2:
-            return ChatColor.GOLD + Lang.get("conditionEditorEntity");
-        case 3:
-            return ChatColor.GOLD + Lang.get("eventEditorPlayer");
-        case 4:
-            return ChatColor.GOLD + Lang.get("conditionEditorWorld");
-        case 5:
-            return ChatColor.YELLOW + Lang.get("conditionEditorCheckPlaceholder");
-        case 6:
-            return ChatColor.YELLOW + Lang.get("eventEditorFailQuest");
-        case 7:
-            return ChatColor.GREEN + Lang.get("save");
-        case 8:
-            return ChatColor.RED + Lang.get("exit");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.YELLOW + Lang.get("conditionEditorSetName");
+            case 2 -> ChatColor.GOLD + Lang.get("conditionEditorEntity");
+            case 3 -> ChatColor.GOLD + Lang.get("eventEditorPlayer");
+            case 4 -> ChatColor.GOLD + Lang.get("conditionEditorWorld");
+            case 5 -> ChatColor.YELLOW + Lang.get("conditionEditorCheckPlaceholder");
+            case 6 -> ChatColor.YELLOW + Lang.get("eventEditorFailQuest");
+            case 7 -> ChatColor.GREEN + Lang.get("save");
+            case 8 -> ChatColor.RED + Lang.get("exit");
+            default -> null;
+        };
     }
     
     @Override
@@ -251,33 +233,23 @@ public class ConditionMainPrompt extends ConditionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.RED;
-                case 4:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("conditionEditorSetPlaceholderId");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("conditionEditorSetPlaceholderVal");
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("conditionEditorSetPlaceholderId");
+                case 2 -> ChatColor.YELLOW + Lang.get("conditionEditorSetPlaceholderVal");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -510,25 +482,19 @@ public class ConditionMainPrompt extends ConditionsEditorNumericPrompt {
         }
         
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN;
+                case 2 -> ChatColor.RED;
+                default -> null;
+            };
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+                case 2 -> ChatColor.RED + Lang.get("noWord");
+                default -> null;
+            };
         }
         
         @Override
@@ -596,25 +562,19 @@ public class ConditionMainPrompt extends ConditionsEditorNumericPrompt {
         }
         
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN;
+                case 2 -> ChatColor.RED;
+                default -> null;
+            };
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+                case 2 -> ChatColor.RED + Lang.get("noWord");
+                default -> null;
+            };
         }
         
         @Override

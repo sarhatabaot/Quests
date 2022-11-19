@@ -54,29 +54,21 @@ public class OptionsPrompt extends QuestsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-        case 2:
-            return ChatColor.BLUE;
-        case 3:
-            return ChatColor.GREEN;
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1, 2 -> ChatColor.BLUE;
+            case 3 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-            return ChatColor.GOLD + Lang.get("optGeneral");
-        case 2:
-            return ChatColor.GOLD + Lang.get("optMultiplayer");
-        case 3:
-            return ChatColor.YELLOW + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.GOLD + Lang.get("optGeneral");
+            case 2 -> ChatColor.GOLD + Lang.get("optMultiplayer");
+            case 3 -> ChatColor.YELLOW + Lang.get("done");
+            default -> null;
+        };
     }
     
     @Override
@@ -104,16 +96,12 @@ public class OptionsPrompt extends QuestsEditorNumericPrompt {
 
     @Override
     protected Prompt acceptValidatedInput(final @NotNull ConversationContext context, final Number input) {
-        switch (input.intValue()) {
-        case 1:
-            return new OptionsGeneralPrompt(context);
-        case 2:
-            return new OptionsMultiplayerPrompt(context);
-        case 3:
-            return plugin.getQuestFactory().returnToMenu(context);
-        default:
-            return new OptionsPrompt(context);
-        }
+        return switch (input.intValue()) {
+            case 1 -> new OptionsGeneralPrompt(context);
+            case 2 -> new OptionsMultiplayerPrompt(context);
+            case 3 -> plugin.getQuestFactory().returnToMenu(context);
+            default -> new OptionsPrompt(context);
+        };
     }
 
     public class OptionsPluginPrompt extends QuestsEditorStringPrompt {
@@ -211,18 +199,13 @@ public class OptionsPrompt extends QuestsEditorNumericPrompt {
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("true");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("false");
-            case 3:
-                return ChatColor.RED + Lang.get("cmdClear");
-            case 4:
-                return ChatColor.RED + Lang.get("cmdCancel");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("true");
+                case 2 -> ChatColor.YELLOW + Lang.get("false");
+                case 3 -> ChatColor.RED + Lang.get("cmdClear");
+                case 4 -> ChatColor.RED + Lang.get("cmdCancel");
+                default -> null;
+            };
         }
         
         @Override
@@ -282,40 +265,26 @@ public class OptionsPrompt extends QuestsEditorNumericPrompt {
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GOLD + "1";
-            case 2:
-                return ChatColor.GOLD + "2";
-            case 3:
-                return ChatColor.GOLD + "3";
-            case 4:
-                return ChatColor.GOLD + "4";
-            case 5:
-                return ChatColor.RED + Lang.get("cmdClear");
-            case 6:
-                return ChatColor.RED + Lang.get("cmdCancel");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GOLD + "1";
+                case 2 -> ChatColor.GOLD + "2";
+                case 3 -> ChatColor.GOLD + "3";
+                case 4 -> ChatColor.GOLD + "4";
+                case 5 -> ChatColor.RED + Lang.get("cmdClear");
+                case 6 -> ChatColor.RED + Lang.get("cmdCancel");
+                default -> null;
+            };
         }
         
         public String getAdditionalText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GRAY + Lang.get("everything");
-            case 2:
-                return ChatColor.GRAY + Lang.get("objectives");
-            case 3:
-                return ChatColor.GRAY + Lang.get("stageEditorStages");
-            case 4:
-                return ChatColor.GRAY + Lang.get("quests");
-            case 5:
-            case 6:
-                return "";
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GRAY + Lang.get("everything");
+                case 2 -> ChatColor.GRAY + Lang.get("objectives");
+                case 3 -> ChatColor.GRAY + Lang.get("stageEditorStages");
+                case 4 -> ChatColor.GRAY + Lang.get("quests");
+                case 5, 6 -> "";
+                default -> null;
+            };
         }
 
         @Override
@@ -425,35 +394,23 @@ public class OptionsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                return ChatColor.BLUE;
-            case 5:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2, 3, 4 -> ChatColor.BLUE;
+                case 5 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("optAllowCommands");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("optAllowQuitting");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("optIgnoreSilkTouch");
-            case 4:
-                return ChatColor.YELLOW + Lang.get("optIgnoreBlockReplace");
-            case 5:
-                return ChatColor.YELLOW + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("optAllowCommands");
+                case 2 -> ChatColor.YELLOW + Lang.get("optAllowQuitting");
+                case 3 -> ChatColor.YELLOW + Lang.get("optIgnoreSilkTouch");
+                case 4 -> ChatColor.YELLOW + Lang.get("optIgnoreBlockReplace");
+                case 5 -> ChatColor.YELLOW + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -576,41 +533,25 @@ public class OptionsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-                return ChatColor.BLUE;
-            case 7:
-                return ChatColor.GREEN;
-             default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2, 3, 4, 5, 6 -> ChatColor.BLUE;
+                case 7 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("optExternalPartyPlugin");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("optUsePartiesPlugin");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("optShareProgressLevel");
-            case 4:
-                return ChatColor.YELLOW + Lang.get("optShareOnlySameQuest");
-            case 5:
-                return ChatColor.YELLOW + Lang.get("optShareDistance");
-            case 6:
-                return ChatColor.YELLOW + Lang.get("optHandleOfflinePlayer");
-            case 7:
-                return ChatColor.YELLOW + Lang.get("done");
-             default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("optExternalPartyPlugin");
+                case 2 -> ChatColor.YELLOW + Lang.get("optUsePartiesPlugin");
+                case 3 -> ChatColor.YELLOW + Lang.get("optShareProgressLevel");
+                case 4 -> ChatColor.YELLOW + Lang.get("optShareOnlySameQuest");
+                case 5 -> ChatColor.YELLOW + Lang.get("optShareDistance");
+                case 6 -> ChatColor.YELLOW + Lang.get("optHandleOfflinePlayer");
+                case 7 -> ChatColor.YELLOW + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override

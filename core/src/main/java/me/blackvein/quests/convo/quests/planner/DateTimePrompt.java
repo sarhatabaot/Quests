@@ -88,52 +88,30 @@ public class DateTimePrompt extends QuestsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-        case 0:
-            return ChatColor.YELLOW;
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-            return ChatColor.BLUE;
-        case 8:
-            return ChatColor.RED;
-        case 9:
-            return ChatColor.GREEN;
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 0 -> ChatColor.YELLOW;
+            case 1, 2, 3, 4, 5, 6, 7 -> ChatColor.BLUE;
+            case 8 -> ChatColor.RED;
+            case 9 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch(number) {
-        case 0:
-            return ChatColor.GOLD + Lang.get("dateCreateLoadTime");
-        case 1:
-            return ChatColor.YELLOW + Lang.get("timeYear");
-        case 2:
-            return ChatColor.YELLOW + Lang.get("timeMonth");
-        case 3:
-            return ChatColor.YELLOW + Lang.get("timeDay");
-        case 4:
-            return ChatColor.YELLOW + Lang.get("timeHour");
-        case 5:
-            return ChatColor.YELLOW + Lang.get("timeMinute");
-        case 6:
-            return ChatColor.YELLOW + Lang.get("timeSecond");
-        case 7:
-            return ChatColor.YELLOW + Lang.get("timeZone");
-        case 8:
-            return ChatColor.RED + Lang.get("cancel");
-        case 9:
-            return ChatColor.GREEN + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 0 -> ChatColor.GOLD + Lang.get("dateCreateLoadTime");
+            case 1 -> ChatColor.YELLOW + Lang.get("timeYear");
+            case 2 -> ChatColor.YELLOW + Lang.get("timeMonth");
+            case 3 -> ChatColor.YELLOW + Lang.get("timeDay");
+            case 4 -> ChatColor.YELLOW + Lang.get("timeHour");
+            case 5 -> ChatColor.YELLOW + Lang.get("timeMinute");
+            case 6 -> ChatColor.YELLOW + Lang.get("timeSecond");
+            case 7 -> ChatColor.YELLOW + Lang.get("timeZone");
+            case 8 -> ChatColor.RED + Lang.get("cancel");
+            case 9 -> ChatColor.GREEN + Lang.get("done");
+            default -> null;
+        };
     }
     
     @Override

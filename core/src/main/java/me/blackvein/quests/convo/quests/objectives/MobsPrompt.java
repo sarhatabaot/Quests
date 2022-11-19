@@ -68,38 +68,24 @@ public class MobsPrompt extends QuestsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return ChatColor.BLUE;
-            case 6:
-                return ChatColor.GREEN;
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1, 2, 3, 4, 5 -> ChatColor.BLUE;
+            case 6 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch(number) {
-        case 1:
-            return ChatColor.YELLOW + Lang.get("stageEditorKillMobs");
-        case 2:
-            return ChatColor.YELLOW + Lang.get("stageEditorTameMobs"); 
-        case 3:
-            return ChatColor.YELLOW + Lang.get("stageEditorCatchFish");
-        case 4:
-            return ChatColor.YELLOW + Lang.get("stageEditorMilkCows");
-        case 5:
-            return ChatColor.YELLOW + Lang.get("stageEditorShearSheep");
-        case 6:
-            return ChatColor.GREEN + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.YELLOW + Lang.get("stageEditorKillMobs");
+            case 2 -> ChatColor.YELLOW + Lang.get("stageEditorTameMobs");
+            case 3 -> ChatColor.YELLOW + Lang.get("stageEditorCatchFish");
+            case 4 -> ChatColor.YELLOW + Lang.get("stageEditorMilkCows");
+            case 5 -> ChatColor.YELLOW + Lang.get("stageEditorShearSheep");
+            case 6 -> ChatColor.GREEN + Lang.get("done");
+            default -> null;
+        };
     }
     
     @Override
@@ -812,33 +798,23 @@ public class MobsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.RED;
-                case 4:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorSetMobTypes");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("stageEditorSetTameAmounts"); 
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorSetMobTypes");
+                case 2 -> ChatColor.YELLOW + Lang.get("stageEditorSetTameAmounts");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -1207,33 +1183,23 @@ public class MobsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.RED;
-                case 4:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorSetShearColors");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("stageEditorSetShearAmounts"); 
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorSetShearColors");
+                case 2 -> ChatColor.YELLOW + Lang.get("stageEditorSetShearAmounts");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override

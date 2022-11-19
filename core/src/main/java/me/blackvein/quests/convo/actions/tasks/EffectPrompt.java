@@ -60,29 +60,21 @@ public class EffectPrompt extends ActionsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-        case 2:
-            return ChatColor.BLUE;
-        case 3:
-            return ChatColor.GREEN;
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1, 2 -> ChatColor.BLUE;
+            case 3 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetEffects");
-        case 2:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetExplosions");
-        case 3:
-            return ChatColor.GREEN + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetEffects");
+            case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetExplosions");
+            case 3 -> ChatColor.GREEN + Lang.get("done");
+            default -> null;
+        };
     }
     
     @Override
@@ -184,33 +176,23 @@ public class EffectPrompt extends ActionsEditorNumericPrompt {
         }
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-                return ChatColor.BLUE;
-            case 3:
-                return ChatColor.RED;
-            case 4:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("eventEditorAddEffect");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("eventEditorAddEffectLocation");
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorAddEffect");
+                case 2 -> ChatColor.YELLOW + Lang.get("eventEditorAddEffectLocation");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override

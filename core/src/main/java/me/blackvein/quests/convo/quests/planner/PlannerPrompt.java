@@ -338,18 +338,13 @@ public class PlannerPrompt extends QuestsEditorNumericPrompt {
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("true");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("false");
-            case 3:
-                return ChatColor.RED + Lang.get("cmdClear");
-            case 4:
-                return ChatColor.RED + Lang.get("cmdCancel");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("true");
+                case 2 -> ChatColor.YELLOW + Lang.get("false");
+                case 3 -> ChatColor.RED + Lang.get("cmdClear");
+                case 4 -> ChatColor.RED + Lang.get("cmdCancel");
+                default -> null;
+            };
         }
         
         @Override

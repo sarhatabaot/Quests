@@ -44,20 +44,16 @@ public class StorageFactory {
     }
 
     public StorageImplementation createNewImplementation(final StorageType method) {
-        switch (method) {
-            case CUSTOM:
-                return CustomStorageProviders.getProvider().provide(plugin);
-            case MYSQL:
-                return new SqlStorage(
-                        plugin,
-                        new MySqlConnectionFactory(getDatabaseValues(plugin.getConfig())),
-                        plugin.getConfig().getString("storage-data.table_prefix")
-                );
-            case YAML:
-                return new SeparatedYamlStorage(plugin, plugin.getDataFolder() + File.separator + "data");
-            default:
-                throw new RuntimeException("Unknown method: " + method);
-        }
+        return switch (method) {
+            case CUSTOM -> CustomStorageProviders.getProvider().provide(plugin);
+            case MYSQL -> new SqlStorage(
+                    plugin,
+                    new MySqlConnectionFactory(getDatabaseValues(plugin.getConfig())),
+                    plugin.getConfig().getString("storage-data.table_prefix")
+            );
+            case YAML -> new SeparatedYamlStorage(plugin, plugin.getDataFolder() + File.separator + "data");
+            default -> throw new RuntimeException("Unknown method: " + method);
+        };
     }
     
     private StorageCredentials getDatabaseValues(final FileConfiguration fc) {

@@ -65,50 +65,28 @@ public class PlayerPrompt extends ActionsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-            return ChatColor.BLUE;
-        case 10:
-            return ChatColor.GREEN;
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1, 2, 3, 4, 5, 6, 7, 8, 9 -> ChatColor.BLUE;
+            case 10 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetMessage");
-        case 2:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetItems");
-        case 3:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetPotionEffects");
-        case 4:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetHunger");
-        case 5:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetSaturation");
-        case 6:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetHealth");
-        case 7:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetTeleport");
-        case 8:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetCommands");
-        case 9:
-            return ChatColor.YELLOW + Lang.get("eventEditorClearInv");
-        case 10:
-            return ChatColor.GREEN + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetMessage");
+            case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetItems");
+            case 3 -> ChatColor.YELLOW + Lang.get("eventEditorSetPotionEffects");
+            case 4 -> ChatColor.YELLOW + Lang.get("eventEditorSetHunger");
+            case 5 -> ChatColor.YELLOW + Lang.get("eventEditorSetSaturation");
+            case 6 -> ChatColor.YELLOW + Lang.get("eventEditorSetHealth");
+            case 7 -> ChatColor.YELLOW + Lang.get("eventEditorSetTeleport");
+            case 8 -> ChatColor.YELLOW + Lang.get("eventEditorSetCommands");
+            case 9 -> ChatColor.YELLOW + Lang.get("eventEditorClearInv");
+            case 10 -> ChatColor.GREEN + Lang.get("done");
+            default -> null;
+        };
     }
     
     @Override
@@ -335,29 +313,21 @@ public class PlayerPrompt extends ActionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-                return ChatColor.BLUE;
-            case 3:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
-            case 2:
-                return ChatColor.RED + Lang.get("clear");
-            case 3:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
+                case 2 -> ChatColor.RED + Lang.get("clear");
+                case 3 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -454,36 +424,24 @@ public class PlayerPrompt extends ActionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-            case 3:
-                return ChatColor.BLUE;
-            case 4:
-                return ChatColor.RED;
-            case 5:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2, 3 -> ChatColor.BLUE;
+                case 4 -> ChatColor.RED;
+                case 5 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetPotionEffectTypes");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetPotionDurations");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetPotionMagnitudes");
-            case 4:
-                return ChatColor.RED + Lang.get("clear");
-            case 5:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetPotionEffectTypes");
+                case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetPotionDurations");
+                case 3 -> ChatColor.YELLOW + Lang.get("eventEditorSetPotionMagnitudes");
+                case 4 -> ChatColor.RED + Lang.get("clear");
+                case 5 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override

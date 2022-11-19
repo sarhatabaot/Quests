@@ -975,29 +975,21 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("reqSetSkills");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("reqSetSkillAmounts");
-            case 3:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("reqSetSkills");
+                case 2 -> ChatColor.YELLOW + Lang.get("reqSetSkillAmounts");
+                case 3 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -1056,16 +1048,12 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         protected Prompt acceptValidatedInput(final @NotNull ConversationContext context, final Number input) {
-            switch(input.intValue()) {
-            case 1:
-                return new McMMOSkillsPrompt(context);
-            case 2:
-                return new McMMOAmountsPrompt(context);
-            case 3:
-                return new RequirementsPrompt(context);
-            default:
-                return new RequirementsMcMMOListPrompt(context);
-            }
+            return switch (input.intValue()) {
+                case 1 -> new McMMOSkillsPrompt(context);
+                case 2 -> new McMMOAmountsPrompt(context);
+                case 3 -> new RequirementsPrompt(context);
+                default -> new RequirementsMcMMOListPrompt(context);
+            };
         }
     }
 
@@ -1217,29 +1205,21 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("reqHeroesSetPrimary");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("reqHeroesSetSecondary");
-            case 3:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("reqHeroesSetPrimary");
+                case 2 -> ChatColor.YELLOW + Lang.get("reqHeroesSetSecondary");
+                case 3 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -1281,16 +1261,12 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         }
         @Override
         protected Prompt acceptValidatedInput(final @NotNull ConversationContext context, final Number input) {
-            switch(input.intValue()) {
-            case 1:
-                return new HeroesPrimaryPrompt(context);
-            case 2:
-                return new HeroesSecondaryPrompt(context);
-            case 3:
-                return new RequirementsPrompt(context);
-            default:
-                return new RequirementsHeroesListPrompt(context);
-            }
+            return switch (input.intValue()) {
+                case 1 -> new HeroesPrimaryPrompt(context);
+                case 2 -> new HeroesSecondaryPrompt(context);
+                case 3 -> new RequirementsPrompt(context);
+                default -> new RequirementsHeroesListPrompt(context);
+            };
         }
     }
 

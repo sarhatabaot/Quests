@@ -603,30 +603,22 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                    return ChatColor.BLUE;
-                case 2:
-                    return ChatColor.RED;
-                case 3:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.BLUE;
+                case 2 -> ChatColor.RED;
+                case 3 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
-            case 2:
-                return ChatColor.RED + Lang.get("clear");
-            case 3:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
+                case 2 -> ChatColor.RED + Lang.get("clear");
+                case 3 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -800,25 +792,12 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
                         s = s.substring(1);
                     }
                     switch (s.trim().split(" ")[0].toLowerCase()) {
-                    case "ban":
-                    case "ban-ip":
-                    case "deop":
-                    case "kick":
-                    case "kill":
-                    case "timings":
-                    case "op": 
-                    case "pardon":
-                    case "pardon-ip":
-                    case "reload":
-                    case "stop":
-                    case "we":
-                    case "whitelist":
-                    case "worldedit":
-                        context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("invalidOption") 
-                                + ChatColor.DARK_RED + " (" + s.trim() + ")");
-                        continue;
-                    default:
-                        commands.add(s.trim());
+                        case "ban", "ban-ip", "deop", "kick", "kill", "timings", "op", "pardon", "pardon-ip", "reload", "stop", "we", "whitelist", "worldedit" -> {
+                            context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("invalidOption")
+                                    + ChatColor.DARK_RED + " (" + s.trim() + ")");
+                            continue;
+                        }
+                        default -> commands.add(s.trim());
                     }
                 }
                 context.setSessionData(CK.REW_COMMAND, commands.isEmpty() ? null : commands);
@@ -1112,33 +1091,23 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.RED;
-                case 4:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("reqSetSkills");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("reqSetSkillAmounts");
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("reqSetSkills");
+                case 2 -> ChatColor.YELLOW + Lang.get("reqSetSkillAmounts");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -1373,33 +1342,23 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.RED;
-                case 4:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("rewSetHeroesClasses");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("rewSetHeroesAmounts");
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("rewSetHeroesClasses");
+                case 2 -> ChatColor.YELLOW + Lang.get("rewSetHeroesAmounts");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override

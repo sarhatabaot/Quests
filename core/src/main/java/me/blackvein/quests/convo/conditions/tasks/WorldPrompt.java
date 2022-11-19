@@ -58,16 +58,11 @@ public class WorldPrompt extends QuestsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-            case 1:
-            case 2:
-            case 3:
-                return ChatColor.BLUE;
-            case 4:
-                return ChatColor.GREEN;
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1, 2, 3 -> ChatColor.BLUE;
+            case 4 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override

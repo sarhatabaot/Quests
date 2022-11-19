@@ -318,30 +318,22 @@ public class ActionMainPrompt extends ActionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.BLUE;
-            case 2:
-                return ChatColor.RED;
-            case 3:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.BLUE;
+                case 2 -> ChatColor.RED;
+                case 3 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("eventEditorAddMobTypes");
-            case 2:
-                return ChatColor.RED + Lang.get("clear");
-            case 3:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorAddMobTypes");
+                case 2 -> ChatColor.RED + Lang.get("clear");
+                case 3 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -429,71 +421,47 @@ public class ActionMainPrompt extends ActionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return ChatColor.BLUE;
-            case 6:
-                return ChatColor.RED;
-            case 7:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2, 3, 4, 5 -> ChatColor.BLUE;
+                case 6 -> ChatColor.RED;
+                case 7 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetMobName");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetMobType");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetMobSpawnAmount");
-            case 4:
-                return ChatColor.YELLOW + Lang.get("eventEditorAddSpawnLocation");
-            case 5:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetEquipment");
-            case 6:
-                return ChatColor.RED + Lang.get("cancel");
-            case 7:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobName");
+                case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobType");
+                case 3 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobSpawnAmount");
+                case 4 -> ChatColor.YELLOW + Lang.get("eventEditorAddSpawnLocation");
+                case 5 -> ChatColor.YELLOW + Lang.get("eventEditorSetEquipment");
+                case 6 -> ChatColor.RED + Lang.get("cancel");
+                case 7 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
         public String getAdditionalText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GRAY + "(" + (questMob.getName() == null ? Lang.get("noneSet") : ChatColor.AQUA
+            return switch (number) {
+                case 1 -> ChatColor.GRAY + "(" + (questMob.getName() == null ? Lang.get("noneSet") : ChatColor.AQUA
                         + questMob.getName()) + ChatColor.GRAY + ")";
-            case 2:
-                return ChatColor.GRAY + "(" + (questMob.getType() == null ? Lang.get("noneSet") : ChatColor.AQUA
+                case 2 -> ChatColor.GRAY + "(" + (questMob.getType() == null ? Lang.get("noneSet") : ChatColor.AQUA
                         + questMob.getType().name()) + ChatColor.GRAY + ")";
-            case 3:
-                return ChatColor.GRAY + "(" + (questMob.getSpawnAmounts() == null ? ChatColor.GRAY
+                case 3 -> ChatColor.GRAY + "(" + (questMob.getSpawnAmounts() == null ? ChatColor.GRAY
                         + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getSpawnAmounts()) + ChatColor.GRAY
                         + ")";
-            case 4:
-                return ChatColor.GRAY + "(" + (questMob.getSpawnLocation() == null ? ChatColor.GRAY
+                case 4 -> ChatColor.GRAY + "(" + (questMob.getSpawnLocation() == null ? ChatColor.GRAY
                         + Lang.get("noneSet") : ChatColor.AQUA + ConfigUtil.getLocationInfo(questMob
                         .getSpawnLocation())) + ChatColor.GRAY + ")";
-            case 5:
-                return ChatColor.GRAY + "(" + (questMob.getInventory()[0] == null ? ChatColor.GRAY
+                case 5 -> ChatColor.GRAY + "(" + (questMob.getInventory()[0] == null ? ChatColor.GRAY
                         + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob.getInventory()[0]))
                         + ChatColor.GRAY + ")";
-            case 6:
-            case 7:
-                return "";
-            default:
-                return null;
-            }
+                case 6, 7 -> "";
+                default -> null;
+            };
         }
 
         @Override
@@ -587,108 +555,69 @@ public class ActionMainPrompt extends ActionsEditorNumericPrompt {
 
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                    return ChatColor.BLUE;
-                case 11:
-                    return ChatColor.RED;
-                case 12:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> ChatColor.BLUE;
+                case 11 -> ChatColor.RED;
+                case 12 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
 
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobItemInHand");
-                case 2:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobItemInHandDrop");
-                case 3:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobBoots");
-                case 4:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobBootsDrop");
-                case 5:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobLeggings");
-                case 6:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobLeggingsDrop");
-                case 7:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobChestPlate");
-                case 8:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobChestPlateDrop");
-                case 9:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobHelmet");
-                case 10:
-                    return ChatColor.YELLOW + Lang.get("eventEditorSetMobHelmetDrop");
-                case 11:
-                    return ChatColor.RED + Lang.get("cancel");
-                case 12:
-                    return ChatColor.GREEN + Lang.get("done");
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobItemInHand");
+                case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobItemInHandDrop");
+                case 3 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobBoots");
+                case 4 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobBootsDrop");
+                case 5 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobLeggings");
+                case 6 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobLeggingsDrop");
+                case 7 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobChestPlate");
+                case 8 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobChestPlateDrop");
+                case 9 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobHelmet");
+                case 10 -> ChatColor.YELLOW + Lang.get("eventEditorSetMobHelmetDrop");
+                case 11 -> ChatColor.RED + Lang.get("cancel");
+                case 12 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
 
         @Override
         public String getAdditionalText(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                    return ChatColor.GRAY + "(" + (questMob.getInventory()[0] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
-                            .getInventory()[0])) + ChatColor.GRAY + ")";
-                case 2:
-                    return ChatColor.GRAY + "(" + (questMob.getDropChances()[0] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[0])
-                            + ChatColor.GRAY + ")";
-                case 3:
-                    return ChatColor.GRAY + "(" + (questMob.getInventory()[1] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
-                            .getInventory()[1])) + ChatColor.GRAY + ")";
-                case 4:
-                    return ChatColor.GRAY + "(" + (questMob.getDropChances()[1] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[1])
-                            + ChatColor.GRAY + ")";
-                case 5:
-                    return ChatColor.GRAY + "(" + (questMob.getInventory()[2] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
-                            .getInventory()[2])) + ChatColor.GRAY + ")";
-                case 6:
-                    return ChatColor.GRAY + "(" + (questMob.getDropChances()[2] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[2])
-                            + ChatColor.GRAY + ")";
-                case 7:
-                    return ChatColor.GRAY + "(" + (questMob.getInventory()[3] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
-                            .getInventory()[3])) + ChatColor.GRAY + ")";
-                case 8:
-                    return ChatColor.GRAY + "(" + (questMob.getDropChances()[3] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[3])
-                            + ChatColor.GRAY + ")";
-                case 9:
-                    return ChatColor.GRAY + "(" + (questMob.getInventory()[4] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
-                            .getInventory()[4])) + ChatColor.GRAY + ")";
-                case 10:
-                    return ChatColor.GRAY + "(" + (questMob.getDropChances()[4] == null ? ChatColor.GRAY
-                            + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[4])
-                            + ChatColor.GRAY + ")";
-                case 11:
-                case 12:
-                    return "";
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GRAY + "(" + (questMob.getInventory()[0] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
+                        .getInventory()[0])) + ChatColor.GRAY + ")";
+                case 2 -> ChatColor.GRAY + "(" + (questMob.getDropChances()[0] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[0])
+                        + ChatColor.GRAY + ")";
+                case 3 -> ChatColor.GRAY + "(" + (questMob.getInventory()[1] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
+                        .getInventory()[1])) + ChatColor.GRAY + ")";
+                case 4 -> ChatColor.GRAY + "(" + (questMob.getDropChances()[1] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[1])
+                        + ChatColor.GRAY + ")";
+                case 5 -> ChatColor.GRAY + "(" + (questMob.getInventory()[2] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
+                        .getInventory()[2])) + ChatColor.GRAY + ")";
+                case 6 -> ChatColor.GRAY + "(" + (questMob.getDropChances()[2] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[2])
+                        + ChatColor.GRAY + ")";
+                case 7 -> ChatColor.GRAY + "(" + (questMob.getInventory()[3] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
+                        .getInventory()[3])) + ChatColor.GRAY + ")";
+                case 8 -> ChatColor.GRAY + "(" + (questMob.getDropChances()[3] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[3])
+                        + ChatColor.GRAY + ")";
+                case 9 -> ChatColor.GRAY + "(" + (questMob.getInventory()[4] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + ItemUtil.getDisplayString(questMob
+                        .getInventory()[4])) + ChatColor.GRAY + ")";
+                case 10 -> ChatColor.GRAY + "(" + (questMob.getDropChances()[4] == null ? ChatColor.GRAY
+                        + Lang.get("noneSet") : ChatColor.AQUA + "" + questMob.getDropChances()[4])
+                        + ChatColor.GRAY + ")";
+                case 11, 12 -> "";
+                default -> null;
+            };
         }
 
         @Override
@@ -1139,25 +1068,19 @@ public class ActionMainPrompt extends ActionsEditorNumericPrompt {
         }
         
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN;
+                case 2 -> ChatColor.RED;
+                default -> null;
+            };
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+                case 2 -> ChatColor.RED + Lang.get("noWord");
+                default -> null;
+            };
         }
 
         @Override
@@ -1227,25 +1150,19 @@ public class ActionMainPrompt extends ActionsEditorNumericPrompt {
         }
         
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN;
+                case 2 -> ChatColor.RED;
+                default -> null;
+            };
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+                case 2 -> ChatColor.RED + Lang.get("noWord");
+                default -> null;
+            };
         }
 
         @Override

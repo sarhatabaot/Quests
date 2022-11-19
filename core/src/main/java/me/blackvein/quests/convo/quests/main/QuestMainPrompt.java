@@ -699,30 +699,22 @@ public class QuestMainPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.BLUE;
-            case 2:
-                return ChatColor.RED;
-            case 3:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.BLUE;
+                case 2 -> ChatColor.RED;
+                case 3 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("clear");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
+                case 2 -> ChatColor.YELLOW + Lang.get("clear");
+                case 3 -> ChatColor.YELLOW + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -806,25 +798,19 @@ public class QuestMainPrompt extends QuestsEditorNumericPrompt {
         }
         
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN;
+                case 2 -> ChatColor.RED;
+                default -> null;
+            };
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+                case 2 -> ChatColor.RED + Lang.get("noWord");
+                default -> null;
+            };
         }
         
         @Override
@@ -930,25 +916,19 @@ public class QuestMainPrompt extends QuestsEditorNumericPrompt {
         }
         
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN;
+                case 2 -> ChatColor.RED;
+                default -> null;
+            };
         }
         
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+                case 2 -> ChatColor.RED + Lang.get("noWord");
+                default -> null;
+            };
         }
         
         @Override

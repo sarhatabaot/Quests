@@ -61,32 +61,22 @@ public class NpcsPrompt extends QuestsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-            case 1:
-            case 2:
-            case 3:
-                return ChatColor.BLUE;
-            case 4:
-                return ChatColor.GREEN;
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1, 2, 3 -> ChatColor.BLUE;
+            case 4 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch(number) {
-        case 1:
-            return ChatColor.YELLOW + Lang.get("stageEditorDeliverItems");
-        case 2:
-            return ChatColor.YELLOW + Lang.get("stageEditorTalkToNPCs");
-        case 3:
-            return ChatColor.YELLOW + Lang.get("stageEditorKillNPCs");
-        case 4:
-            return ChatColor.GREEN + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.YELLOW + Lang.get("stageEditorDeliverItems");
+            case 2 -> ChatColor.YELLOW + Lang.get("stageEditorTalkToNPCs");
+            case 3 -> ChatColor.YELLOW + Lang.get("stageEditorKillNPCs");
+            case 4 -> ChatColor.GREEN + Lang.get("done");
+            default -> null;
+        };
     }
     
     @Override
@@ -240,36 +230,24 @@ public class NpcsPrompt extends QuestsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                case 3:
-                    return ChatColor.BLUE;
-                case 4:
-                    return ChatColor.RED;
-                case 5:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2, 3 -> ChatColor.BLUE;
+                case 4 -> ChatColor.RED;
+                case 5 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("stageEditorNPCUniqueIds");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("stageEditorDeliveryMessages");
-            case 4:
-                return ChatColor.RED + Lang.get("clear");
-            case 5:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorDeliveryAddItem");
+                case 2 -> ChatColor.YELLOW + Lang.get("stageEditorNPCUniqueIds");
+                case 3 -> ChatColor.YELLOW + Lang.get("stageEditorDeliveryMessages");
+                case 4 -> ChatColor.RED + Lang.get("clear");
+                case 5 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -624,33 +602,23 @@ public class NpcsPrompt extends QuestsEditorNumericPrompt {
 
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-                case 1:
-                case 2:
-                    return ChatColor.BLUE;
-                case 3:
-                    return ChatColor.RED;
-                case 4:
-                    return ChatColor.GREEN;
-                default:
-                    return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
 
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch(number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("stageEditorNPCUniqueIds");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("stageEditorSetKillAmounts");
-            case 3:
-                return ChatColor.RED + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("stageEditorNPCUniqueIds");
+                case 2 -> ChatColor.YELLOW + Lang.get("stageEditorSetKillAmounts");
+                case 3 -> ChatColor.RED + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
 
         @Override

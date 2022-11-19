@@ -133,57 +133,32 @@ public class CitizensListener implements Listener {
                                     .replace("<item>", text).replace("<item>", ItemUtil.getName(hand)));
                         }
                         switch (reasonCode) {
-                            case 1:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "one item is null"));
-                                break;
-                            case 0:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "ERROR"));
-                                break;
-                            case -1:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "name"));
-                                break;
-                            case -2:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "amount"));
-                                break;
-                            case -3:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "durability"));
-                                break;
-                            case -4:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "display name or lore"));
-                                break;
-                            case -5:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "enchantments"));
-                                break;
-                            case -6:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "stored enchants"));
-                                break;
-                            case -7:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "item flags"));
-                                break;
-                            case -8:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "book data"));
-                                break;
-                            case -9:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "potion type"));
-                                break;
-                            case -10:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "fish variant"));
-                                break;
-                            default:
-                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                        .replace("<data>", "unknown"));
+                            case 1 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "one item is null"));
+                            case 0 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "ERROR"));
+                            case -1 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "name"));
+                            case -2 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "amount"));
+                            case -3 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "durability"));
+                            case -4 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "display name or lore"));
+                            case -5 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "enchantments"));
+                            case -6 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "stored enchants"));
+                            case -7 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "item flags"));
+                            case -8 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "book data"));
+                            case -9 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "potion type"));
+                            case -10 -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "fish variant"));
+                            default -> player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                    .replace("<data>", "unknown"));
                         }
                         if (hasMeta) {
                             if (hand.getType().equals(Material.ENCHANTED_BOOK)) {

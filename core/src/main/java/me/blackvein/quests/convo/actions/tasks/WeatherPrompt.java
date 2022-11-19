@@ -60,32 +60,22 @@ public class WeatherPrompt extends ActionsEditorNumericPrompt {
     
     @Override
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-        case 2:
-        case 3:
-            return ChatColor.BLUE;
-        case 4:
-            return ChatColor.GREEN;
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1, 2, 3 -> ChatColor.BLUE;
+            case 4 -> ChatColor.GREEN;
+            default -> null;
+        };
     }
     
     @Override
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch (number) {
-        case 1:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetStorm");
-        case 2:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetThunder");
-        case 3:
-            return ChatColor.YELLOW + Lang.get("eventEditorSetLightning");
-        case 4:
-            return ChatColor.GREEN + Lang.get("done");
-        default:
-            return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetStorm");
+            case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetThunder");
+            case 3 -> ChatColor.YELLOW + Lang.get("eventEditorSetLightning");
+            case 4 -> ChatColor.GREEN + Lang.get("done");
+            default -> null;
+        };
     }
     
     @SuppressWarnings("unchecked")
@@ -194,33 +184,23 @@ public class WeatherPrompt extends ActionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-                return ChatColor.BLUE;
-            case 3:
-                return ChatColor.RED;
-            case 4:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetWorld");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetDuration");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetWorld");
+                case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetDuration");
+                case 3 -> ChatColor.YELLOW + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
@@ -411,33 +391,23 @@ public class WeatherPrompt extends ActionsEditorNumericPrompt {
         
         @Override
         public ChatColor getNumberColor(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-            case 2:
-                return ChatColor.BLUE;
-            case 3:
-                return ChatColor.RED;
-            case 4:
-                return ChatColor.GREEN;
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1, 2 -> ChatColor.BLUE;
+                case 3 -> ChatColor.RED;
+                case 4 -> ChatColor.GREEN;
+                default -> null;
+            };
         }
         
         @Override
         public String getSelectionText(final ConversationContext context, final int number) {
-            switch (number) {
-            case 1:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetWorld");
-            case 2:
-                return ChatColor.YELLOW + Lang.get("eventEditorSetDuration");
-            case 3:
-                return ChatColor.YELLOW + Lang.get("clear");
-            case 4:
-                return ChatColor.GREEN + Lang.get("done");
-            default:
-                return null;
-            }
+            return switch (number) {
+                case 1 -> ChatColor.YELLOW + Lang.get("eventEditorSetWorld");
+                case 2 -> ChatColor.YELLOW + Lang.get("eventEditorSetDuration");
+                case 3 -> ChatColor.YELLOW + Lang.get("clear");
+                case 4 -> ChatColor.GREEN + Lang.get("done");
+                default -> null;
+            };
         }
         
         @Override
