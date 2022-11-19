@@ -36,25 +36,19 @@ public class QuestAbandonPrompt extends MiscStringPrompt {
     }
 
     public ChatColor getNumberColor(final ConversationContext context, final int number) {
-        switch (number) {
-            case 1:
-                return ChatColor.GREEN;
-            case 2:
-                return ChatColor.RED;
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.GREEN;
+            case 2 -> ChatColor.RED;
+            default -> null;
+        };
     }
 
     public String getSelectionText(final ConversationContext context, final int number) {
-        switch (number) {
-            case 1:
-                return ChatColor.GREEN + Lang.get("yesWord");
-            case 2:
-                return ChatColor.RED + Lang.get("noWord");
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1 -> ChatColor.GREEN + Lang.get("yesWord");
+            case 2 -> ChatColor.RED + Lang.get("noWord");
+            default -> null;
+        };
     }
 
     public String getQueryText(final ConversationContext context) {
