@@ -1230,31 +1230,7 @@ public class Quest implements IQuest {
         final QuesterPostFailQuestEvent postEvent = new QuesterPostFailQuestEvent((Quester) quester, this);
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
-    
-    /**
-     * Checks if quester is in WorldGuard region start
-     * 
-     * @deprecated Use {@link #isInRegionStart(IQuester)}
-     * @param quester The quester to check
-     * @return true if quester is in region
-     */
-    @Deprecated
-    public boolean isInRegion(final IQuester quester) {
-        return isInRegionStart(quester);
-    }
 
-    /**
-     * Checks if player is in WorldGuard region start
-     * 
-     * @deprecated Use {@link #isInRegionStart(Player)}
-     * @param player The player to check
-     * @return true if player is in region
-     */
-    @Deprecated
-    @SuppressWarnings("unused")
-    private boolean isInRegion(final Player player) {
-        return isInRegionStart(player);
-    }
     
     /**
      * Checks if quester is in WorldGuard region start
