@@ -600,8 +600,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onEntityTame(final EntityTameEvent evt) {
-        if (evt.getOwner() instanceof Player) {
-            final Player player = (Player) evt.getOwner();
+        if (evt.getOwner() instanceof final Player player) {
             if (plugin.canUseQuests(player.getUniqueId())) {
                 final IQuester quester = plugin.getQuester(player.getUniqueId());
                 final ObjectiveType type = ObjectiveType.TAME_MOB;
@@ -630,23 +629,19 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onEntityDeath(final EntityDeathEvent evt) {
-        if (evt.getEntity().getLastDamageCause() instanceof EntityDamageByEntityEvent) {
-            final EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) evt.getEntity().getLastDamageCause();
+        if (evt.getEntity().getLastDamageCause() instanceof final EntityDamageByEntityEvent damageEvent) {
             final Entity damager = damageEvent.getDamager();
 
-            if (damager instanceof Projectile) {
-                final Projectile projectile = (Projectile) damager;
+            if (damager instanceof final Projectile projectile) {
                 if (projectile.getShooter() != null && projectile.getShooter() instanceof Entity) {
                     preKillMob((Entity)projectile.getShooter(), evt.getEntity());
                 }
-            } else if (damager instanceof TNTPrimed) {
-                final TNTPrimed tnt = (TNTPrimed) damager;
+            } else if (damager instanceof final TNTPrimed tnt) {
                 final Entity source = tnt.getSource();
                 if (source != null && source.isValid()) {
                     preKillMob(source, evt.getEntity());
                 }
-            } else if (damager instanceof Wolf) {
-                final Wolf wolf = (Wolf) damager;
+            } else if (damager instanceof final Wolf wolf) {
                 if (wolf.isTamed() && wolf.getOwner() != null) {
                     final IQuester quester = plugin.getQuester(wolf.getOwner().getUniqueId());
                     if (quester != null) {
@@ -702,28 +697,24 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(final PlayerDeathEvent evt) {
-        if (evt.getEntity().getLastDamageCause() instanceof EntityDamageByEntityEvent) {
-            final EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) evt.getEntity().getLastDamageCause();
+        if (evt.getEntity().getLastDamageCause() instanceof final EntityDamageByEntityEvent damageEvent) {
             final Entity damager = damageEvent.getDamager();
 
             if (evt.getEntity().getUniqueId().equals(damager.getUniqueId())) {
                 return;
             }
-            if (damager instanceof Projectile) {
-                final Projectile projectile = (Projectile) damager;
+            if (damager instanceof final Projectile projectile) {
                 if (projectile.getShooter() != null && projectile.getShooter() instanceof Entity) {
                     preKillPlayer((Entity)projectile.getShooter(), evt.getEntity());
                 }
-            } else if (damager instanceof TNTPrimed) {
-                final TNTPrimed tnt = (TNTPrimed) damager;
+            } else if (damager instanceof final TNTPrimed tnt) {
                 final Entity source = tnt.getSource();
                 if (source != null) {
                     if (source.isValid()) {
                         preKillPlayer(source, evt.getEntity());
                     }
                 }
-            } else if (damager instanceof Wolf) {
-                final Wolf wolf = (Wolf) damager;
+            } else if (damager instanceof final Wolf wolf) {
                 if (wolf.isTamed() && wolf.getOwner() != null) {
                     final IQuester quester = plugin.getQuester(wolf.getOwner().getUniqueId());
                     preKillPlayer(quester.getPlayer(), evt.getEntity());
