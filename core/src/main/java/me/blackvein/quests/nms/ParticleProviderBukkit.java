@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 
-class ParticleProvider_Bukkit extends ParticleProvider {
+class ParticleProviderBukkit extends ParticleProvider {
 
     private static final Map<PreBuiltParticle, Object> PARTICLES = new HashMap<>();
 

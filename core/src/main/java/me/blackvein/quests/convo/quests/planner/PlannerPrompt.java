@@ -199,7 +199,7 @@ public class PlannerPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class PlannerRepeatPrompt extends QuestsEditorStringPrompt {
+    public static class PlannerRepeatPrompt extends QuestsEditorStringPrompt {
         
         public PlannerRepeatPrompt(final ConversationContext context) {
             super(context);

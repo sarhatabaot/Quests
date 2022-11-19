@@ -29,6 +29,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -51,6 +52,7 @@ public class Action implements IAction {
     protected boolean cancelTimer = false;
     protected LinkedList<QuestMob> mobSpawns = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -761974607799449780L;
 
         @Override

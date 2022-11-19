@@ -2,7 +2,7 @@ package me.blackvein.quests.nms;
 
 import org.bukkit.entity.Player;
 
-class TitleProvider_Bukkit extends TitleProvider {
+class TitleProviderBukkit extends TitleProvider {
 
     @SuppressWarnings("deprecation")
     @Override

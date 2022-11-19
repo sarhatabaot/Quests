@@ -504,7 +504,7 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class RequirementsQuestPointsPrompt extends QuestsEditorStringPrompt {
+    public static class RequirementsQuestPointsPrompt extends QuestsEditorStringPrompt {
         
         public RequirementsQuestPointsPrompt(final ConversationContext context) {
             super(context);
@@ -790,7 +790,7 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class RequirementsExperiencePrompt extends QuestsEditorStringPrompt {
+    public static class RequirementsExperiencePrompt extends QuestsEditorStringPrompt {
 
         public RequirementsExperiencePrompt(final ConversationContext context) {
             super(context);
@@ -844,7 +844,7 @@ public class RequirementsPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class RequirementsPermissionsPrompt extends QuestsEditorStringPrompt {
+    public static class RequirementsPermissionsPrompt extends QuestsEditorStringPrompt {
         
         public RequirementsPermissionsPrompt(final ConversationContext context) {
             super(context);

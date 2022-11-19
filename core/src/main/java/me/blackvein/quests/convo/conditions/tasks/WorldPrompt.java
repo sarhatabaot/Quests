@@ -178,7 +178,7 @@ public class WorldPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class WorldsPrompt extends QuestsEditorStringPrompt {
+    public static class WorldsPrompt extends QuestsEditorStringPrompt {
         
         public WorldsPrompt(final ConversationContext context) {
             super(context);
@@ -236,7 +236,7 @@ public class WorldPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class BiomesPrompt extends QuestsEditorStringPrompt {
+    public static class BiomesPrompt extends QuestsEditorStringPrompt {
         
         public BiomesPrompt(final ConversationContext context) {
             super(context);

@@ -307,7 +307,7 @@ public class Dependencies implements IDependencies {
     }
 
     public String getNPCName(final UUID uuid) {
-        Entity npc = null;
+        Entity npc;
         if (citizens != null && citizens.getNPCRegistry().getByUniqueId(uuid) != null) {
             return citizens.getNPCRegistry().getByUniqueId(uuid).getName();
         } else if (getZnpcsUuids().contains(uuid)) {

@@ -12,8 +12,11 @@
 
 package me.blackvein.quests.exceptions;
 
+import java.io.Serial;
+
 public class QuestFormatException extends Exception {
 
+    @Serial
     private static final long serialVersionUID = -5960613170308750149L;
     private final String message;
     private final String questId;

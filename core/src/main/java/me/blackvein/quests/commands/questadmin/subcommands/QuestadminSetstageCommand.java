@@ -84,7 +84,7 @@ public class QuestadminSetstageCommand extends QuestsSubCommand {
                     return;
                 }
             }
-            int stage = -1;
+            int stage;
             try {
                 stage = Integer.parseInt(args[args.length - 1]);
             } catch (final NumberFormatException e) {

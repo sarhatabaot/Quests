@@ -676,7 +676,7 @@ public class QuestMainPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class QuestGuiDisplayPrompt extends QuestsEditorNumericPrompt {
+    public static class QuestGuiDisplayPrompt extends QuestsEditorNumericPrompt {
         
         private final Quests plugin;
         

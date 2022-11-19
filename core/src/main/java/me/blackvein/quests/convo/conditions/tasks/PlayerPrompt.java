@@ -158,7 +158,7 @@ public class PlayerPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class PermissionsPrompt extends QuestsEditorStringPrompt {
+    public static class PermissionsPrompt extends QuestsEditorStringPrompt {
         
         public PermissionsPrompt(final ConversationContext context) {
             super(context);
@@ -201,7 +201,7 @@ public class PlayerPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class ItemsInMainHandListPrompt extends QuestsEditorNumericPrompt {
+    public static class ItemsInMainHandListPrompt extends QuestsEditorNumericPrompt {
         
         public ItemsInMainHandListPrompt(final ConversationContext context) {
             super(context);

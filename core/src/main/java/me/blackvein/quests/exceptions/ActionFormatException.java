@@ -12,8 +12,11 @@
 
 package me.blackvein.quests.exceptions;
 
+import java.io.Serial;
+
 public class ActionFormatException extends Exception {
 
+    @Serial
     private static final long serialVersionUID = 6165516939621807530L;
     private final String message;
     private final String actionId;

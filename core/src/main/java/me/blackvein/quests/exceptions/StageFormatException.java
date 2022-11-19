@@ -14,8 +14,11 @@ package me.blackvein.quests.exceptions;
 
 import me.blackvein.quests.quests.IQuest;
 
+import java.io.Serial;
+
 public class StageFormatException extends Exception {
     
+    @Serial
     private static final long serialVersionUID = -8217391053042612896L;
     private final String message;
     private final IQuest quest;

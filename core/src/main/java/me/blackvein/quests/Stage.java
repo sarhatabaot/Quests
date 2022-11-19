@@ -24,6 +24,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -45,6 +46,7 @@ public class Stage implements IStage {
     private LinkedList<ItemStack> itemsToDeliver = new LinkedList<>();
     private LinkedList<UUID> itemDeliveryTargets = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -2774443496142382127L;
 
         @Override
@@ -64,6 +66,7 @@ public class Stage implements IStage {
     private  LinkedList<String> deliverMessages = new LinkedList<>();
     private LinkedList<UUID> npcsToInteract = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -4086855121042524435L;
 
         @Override
@@ -82,6 +85,7 @@ public class Stage implements IStage {
     };
     private LinkedList<UUID> npcsToKill = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 7705964814014176415L;
 
         @Override

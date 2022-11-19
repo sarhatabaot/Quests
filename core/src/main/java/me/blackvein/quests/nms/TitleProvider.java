@@ -12,7 +12,6 @@
 
 package me.blackvein.quests.nms;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public abstract class TitleProvider {
@@ -20,19 +19,7 @@ public abstract class TitleProvider {
     private static TitleProvider loaded;
 
     static {
-        final String internalsName = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        try {
-            final String packageName = TitleProvider.class.getPackage().getName();
-            if (internalsName.startsWith("v1_8_R")) {
-                loaded = (TitleProvider) Class.forName(packageName + ".TitleProvider_" + internalsName)
-                        .newInstance();
-            } else {
-                loaded = new TitleProvider_Bukkit();
-            }
-        } catch (final ClassNotFoundException | InstantiationException | IllegalAccessException
-                | ClassCastException exception) {
-            Bukkit.getLogger().severe("[Quests] No valid title implementation for version " + internalsName);
-        }
+        loaded = new TitleProviderBukkit();
     }
 
     abstract void sendTitlePacket(Player player, String title, String subtitle);

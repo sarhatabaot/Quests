@@ -73,6 +73,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.material.Crops;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -105,6 +106,7 @@ public class Quester implements IQuester {
     protected ConcurrentHashMap<Integer, IQuest> timers = new ConcurrentHashMap<>();
     protected ConcurrentHashMap<IQuest, Integer> currentQuests = new ConcurrentHashMap<>() {
 
+        @Serial
         private static final long serialVersionUID = 6361484975823846780L;
 
         @Override
@@ -135,6 +137,7 @@ public class Quester implements IQuester {
     };
     protected ConcurrentSkipListSet<IQuest> completedQuests = new ConcurrentSkipListSet<>() {
 
+        @Serial
         private static final long serialVersionUID = -269110128568487000L;
 
         @Override
@@ -174,6 +177,7 @@ public class Quester implements IQuester {
     protected ConcurrentHashMap<IQuest, Long> completedTimes = new ConcurrentHashMap<>();
     protected ConcurrentHashMap<IQuest, Integer> amountsCompleted = new ConcurrentHashMap<>() {
 
+        @Serial
         private static final long serialVersionUID = 5475202358792520975L;
 
         @Override
@@ -204,6 +208,7 @@ public class Quester implements IQuester {
     };
     protected ConcurrentHashMap<IQuest, QuestData> questData = new ConcurrentHashMap<>() {
 
+        @Serial
         private static final long serialVersionUID = -4607112433003926066L;
 
         @Override
@@ -686,6 +691,7 @@ public class Quester implements IQuester {
             if (currentTime > end) {
                 final int maxSize = 2;
                 final LinkedHashMap<Long, Long> mostRecent = new LinkedHashMap<>() {
+                    @Serial
                     private static final long serialVersionUID = 3046838061019897713L;
 
                     @Override

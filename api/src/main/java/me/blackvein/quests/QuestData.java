@@ -15,6 +15,7 @@ package me.blackvein.quests;
 import me.blackvein.quests.player.IQuester;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -31,6 +32,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> blocksBroken = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -6071822509475270168L;
 
         @Override
@@ -75,6 +77,7 @@ public class QuestData {
 
     public LinkedList<ItemStack> blocksDamaged = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -4211891633163257743L;
 
         @Override
@@ -119,6 +122,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> blocksPlaced = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 4226366446050903433L;
 
         @Override
@@ -163,6 +167,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> blocksUsed = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -9057864863810306890L;
 
         @Override
@@ -207,6 +212,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> blocksCut = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -8204359763290995080L;
 
         @Override
@@ -251,6 +257,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> itemsCrafted = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 2774356294049526105L;
 
         @Override
@@ -295,6 +302,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> itemsSmelted = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 2774356235274526106L;
 
         @Override
@@ -339,6 +347,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> itemsEnchanted = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 416869352279205852L;
 
         @Override
@@ -383,6 +392,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> itemsBrewed = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 2774356235274526107L;
 
         @Override
@@ -427,6 +437,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> itemsConsumed = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -5475073316902757883L;
 
         @Override
@@ -471,6 +482,7 @@ public class QuestData {
     
     public LinkedList<ItemStack> itemsDelivered = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 2712497347022734646L;
 
         @Override
@@ -515,6 +527,7 @@ public class QuestData {
 
     public LinkedList<Boolean> npcsInteracted = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 2447610341508300847L;
 
         @Override
@@ -582,6 +595,7 @@ public class QuestData {
 
     public LinkedList<Integer> npcsNumKilled = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 1849192351499071688L;
 
         @Override
@@ -649,6 +663,7 @@ public class QuestData {
     
     public LinkedList<Integer> mobNumKilled = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 2228385647091499176L;
 
         @Override
@@ -716,6 +731,7 @@ public class QuestData {
 
     public LinkedList<Integer> mobsTamed = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 3851959471748032699L;
 
         @Override
@@ -787,6 +803,7 @@ public class QuestData {
 
     public LinkedList<Integer> sheepSheared = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -6016463677133534885L;
 
         @Override
@@ -856,6 +873,7 @@ public class QuestData {
     
     public LinkedList<Boolean> locationsReached = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -8802305642082466541L;
 
         @Override
@@ -923,6 +941,7 @@ public class QuestData {
     
     public LinkedList<Boolean> passwordsSaid = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = -4297291041298491402L;
 
         @Override
@@ -990,6 +1009,7 @@ public class QuestData {
 
     public LinkedList<Integer> customObjectiveCounts = new LinkedList<>() {
 
+        @Serial
         private static final long serialVersionUID = 6027656575740406823L;
 
         @Override

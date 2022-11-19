@@ -155,7 +155,7 @@ public class EntityPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class EntitiesPrompt extends QuestsEditorStringPrompt {
+    public static class EntitiesPrompt extends QuestsEditorStringPrompt {
         
         public EntitiesPrompt(final ConversationContext context) {
             super(context);

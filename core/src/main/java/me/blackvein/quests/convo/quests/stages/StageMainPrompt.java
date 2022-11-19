@@ -1680,7 +1680,7 @@ public class StageMainPrompt extends QuestsEditorNumericPrompt {
         }
 
         @Override
-        public Prompt acceptInput(final ConversationContext context, final String input) {
+        public Prompt acceptInput(final @NotNull ConversationContext context, final String input) {
             if (input != null && !input.equalsIgnoreCase(Lang.get("cmdCancel"))
                     && !input.equalsIgnoreCase(Lang.get("cmdClear"))) {
                 IAction found = null;
@@ -1746,7 +1746,7 @@ public class StageMainPrompt extends QuestsEditorNumericPrompt {
         }
 
         @Override
-        public Prompt acceptInput(final ConversationContext context, final String input) {
+        public Prompt acceptInput(final @NotNull ConversationContext context, final String input) {
             if (input != null && !input.equalsIgnoreCase(Lang.get("cmdCancel"))
                     && !input.equalsIgnoreCase(Lang.get("cmdClear"))) {
                 IAction found = null;

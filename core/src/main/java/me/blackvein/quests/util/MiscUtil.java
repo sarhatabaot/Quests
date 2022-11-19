@@ -285,7 +285,7 @@ public class MiscUtil {
     
     /**
      * Adds a single space in front of all capital letters
-     * 
+     * <p>
      * Unused internally. Left for external use
      * 
      * @param input string to process

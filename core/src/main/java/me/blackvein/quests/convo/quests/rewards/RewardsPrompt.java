@@ -529,7 +529,7 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class RewardsQuestPointsPrompt extends QuestsEditorStringPrompt {
+    public static class RewardsQuestPointsPrompt extends QuestsEditorStringPrompt {
         
         public RewardsQuestPointsPrompt(final ConversationContext context) {
             super(context);
@@ -583,7 +583,7 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class RewardsItemListPrompt extends QuestsEditorNumericPrompt {
+    public static class RewardsItemListPrompt extends QuestsEditorNumericPrompt {
 
         public RewardsItemListPrompt(final ConversationContext context) {
             super(context);
@@ -698,7 +698,7 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         }
     }
 
-    public class RewardsExperiencePrompt extends QuestsEditorStringPrompt {
+    public static class RewardsExperiencePrompt extends QuestsEditorStringPrompt {
 
         public RewardsExperiencePrompt(final ConversationContext context) {
             super(context);
@@ -752,7 +752,7 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class RewardsCommandsPrompt extends QuestsEditorStringPrompt {
+    public static class RewardsCommandsPrompt extends QuestsEditorStringPrompt {
         
         public RewardsCommandsPrompt(final ConversationContext context) {
             super(context);
@@ -1582,7 +1582,7 @@ public class RewardsPrompt extends QuestsEditorNumericPrompt {
         }
     }
     
-    public class RewardsPartiesExperiencePrompt extends QuestsEditorStringPrompt {
+    public static class RewardsPartiesExperiencePrompt extends QuestsEditorStringPrompt {
         
         public RewardsPartiesExperiencePrompt(final ConversationContext context) {
             super(context);
