@@ -63,7 +63,7 @@ public class QuestsListCommand extends QuestsSubCommand {
     @Override
     public void execute(CommandSender cs, String[] args) {
         if (cs.hasPermission(getPermission())) {
-            if (!(cs instanceof Player)) {
+            if (!(cs instanceof final Player player)) {
                 int num = 1;
                 cs.sendMessage(ChatColor.GOLD + Lang.get("questListTitle"));
                 for (final IQuest q : plugin.getLoadedQuests()) {
@@ -72,7 +72,6 @@ public class QuestsListCommand extends QuestsSubCommand {
                 }
                 return;
             }
-            final Player player = (Player)cs;
             if (args.length == 1) {
                 final Quester quester = plugin.getQuester(player.getUniqueId());
                 final QuestsCommandPreQuestsListEvent preEvent = new QuestsCommandPreQuestsListEvent(quester, 1);

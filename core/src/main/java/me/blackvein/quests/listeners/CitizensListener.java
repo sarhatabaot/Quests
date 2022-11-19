@@ -291,8 +291,7 @@ public class CitizensListener implements Listener {
                 || evt.getNPC().getEntity().getLastDamageCause() == null) {
             return;
         }
-        if (evt.getNPC().getEntity().getLastDamageCause() instanceof EntityDamageByEntityEvent) {
-            final EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) evt.getNPC().getEntity().getLastDamageCause();
+        if (evt.getNPC().getEntity().getLastDamageCause() instanceof final EntityDamageByEntityEvent damageEvent) {
             final Entity damager = damageEvent.getDamager();
             if (plugin.getDependencies().getCitizens().getNPCRegistry().isNPC(damager)) {
                 return;

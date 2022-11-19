@@ -270,10 +270,9 @@ public class ItemStackPrompt extends QuestsEditorNumericPrompt {
     public Prompt acceptValidatedInput(final ConversationContext context, final Number input, final ItemStack item) {
         switch (input.intValue()) {
         case 0:
-            if (context.getForWhom() instanceof Player) {
+            if (context.getForWhom() instanceof final Player player) {
                 context.setSessionData("tempMeta", null);
-                
-                final Player player = (Player) context.getForWhom();
+
                 final ItemStack is = item == null ? player.getItemInHand() : item;
                 if (is.getType().equals(Material.AIR)) {
                     player.sendMessage(ChatColor.RED + Lang.get("itemCreateNoItem"));
@@ -463,8 +462,7 @@ public class ItemStackPrompt extends QuestsEditorNumericPrompt {
                     context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("itemCreateInvalidName"));
                     return new ItemNamePrompt(context);
                 } else {
-                    if (context.getPlugin() instanceof Quests) {
-                        final Quests plugin = (Quests)context.getPlugin();
+                    if (context.getPlugin() instanceof final Quests plugin) {
                         if (plugin.hasLimitedAccess(context.getForWhom())) {
                             if (plugin.getServer().getRecipesFor(new ItemStack(mat)).isEmpty()) {
                                 context.getForWhom().sendRawMessage(ChatColor.RED + Lang.get("noPermission"));

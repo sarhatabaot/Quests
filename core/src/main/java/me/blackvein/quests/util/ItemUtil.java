@@ -187,10 +187,8 @@ public class ItemUtil {
             return -5;
         }
         if (one.getType().equals(Material.ENCHANTED_BOOK)) {
-            if (one.getItemMeta() instanceof EnchantmentStorageMeta
-                    && two.getItemMeta() instanceof EnchantmentStorageMeta) {
-                final EnchantmentStorageMeta esMeta1 = (EnchantmentStorageMeta) one.getItemMeta();
-                final EnchantmentStorageMeta esMeta2 = (EnchantmentStorageMeta) two.getItemMeta();
+            if (one.getItemMeta() instanceof final EnchantmentStorageMeta esMeta1
+                    && two.getItemMeta() instanceof final EnchantmentStorageMeta esMeta2) {
                 if (esMeta1.hasStoredEnchants() && !esMeta2.hasStoredEnchants()) {
                     return -6;
                 }

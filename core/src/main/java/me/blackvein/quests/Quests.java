@@ -4317,10 +4317,9 @@ public class Quests extends JavaPlugin implements QuestsAPI {
      * @return {@code true} if user is a Player with quests.mode.trial permission
      */
     public boolean hasLimitedAccess(final Conversable conversable) {
-        if (!(conversable instanceof Player)) {
+        if (!(conversable instanceof final Player player)) {
             return false;
         }
-        final Player player = ((Player)conversable);
         if (player.isOp() || player.hasPermission("*")) {
             return false;
         }

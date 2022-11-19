@@ -45,8 +45,7 @@ public class ItemListener implements Listener {
         if (evt.getAction().equals(InventoryAction.NOTHING)) {
             return;
         }
-        if (evt.getWhoClicked() instanceof Player) {
-            final Player player = (Player) evt.getWhoClicked();
+        if (evt.getWhoClicked() instanceof final Player player) {
             if (plugin.canUseQuests(player.getUniqueId())) {
                 final ItemStack craftedItem = getCraftedItem(evt);
                 final IQuester quester = plugin.getQuester(player.getUniqueId());
@@ -94,8 +93,7 @@ public class ItemListener implements Listener {
     
     @EventHandler
     public void onInventoryClick(final InventoryClickEvent evt) {
-        if (evt.getWhoClicked() instanceof Player) {
-            final Player player = (Player) evt.getWhoClicked();
+        if (evt.getWhoClicked() instanceof final Player player) {
             if (evt.getInventory().getType() == InventoryType.FURNACE
                     || evt.getInventory().getType().name().equals("BLAST_FURNACE")
                     || evt.getInventory().getType().name().equals("SMOKER")) {
