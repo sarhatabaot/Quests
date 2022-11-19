@@ -1231,7 +1231,7 @@ public class Quest implements IQuest {
         plugin.getServer().getPluginManager().callEvent(postEvent);
     }
 
-    
+
     /**
      * Checks if quester is in WorldGuard region start
      * 

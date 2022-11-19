@@ -95,7 +95,5 @@ public interface IQuest extends Comparable<IQuest> {
 
     void failQuest(final IQuester quester, final boolean ignoreFailAction);
 
-    boolean isInRegion(final IQuester quester);
-
     boolean isInRegionStart(final IQuester quester);
 }

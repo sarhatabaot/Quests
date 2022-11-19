@@ -39,8 +39,14 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public interface IQuester extends Comparable<IQuester> {
+    /**
+     * @return The Questers UUID
+     */
     UUID getUUID();
 
+    /**
+     * @param id The Questers UUID
+     */
     void setUUID(final UUID id);
 
     String getQuestIdToTake();
