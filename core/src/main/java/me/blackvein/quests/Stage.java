@@ -43,15 +43,14 @@ public class Stage implements IStage {
     private LinkedList<ItemStack> itemsToBrew = new LinkedList<>();
     private LinkedList<ItemStack> itemsToConsume = new LinkedList<>();
     private LinkedList<ItemStack> itemsToDeliver = new LinkedList<>();
-    private LinkedList<UUID> itemDeliveryTargets = new LinkedList<UUID>() {
+    private LinkedList<UUID> itemDeliveryTargets = new LinkedList<>() {
 
         private static final long serialVersionUID = -2774443496142382127L;
 
         @Override
         public boolean equals(final Object o) {
             if (o instanceof LinkedList) {
-                @SuppressWarnings("unchecked")
-                final LinkedList<UUID> otherList = (LinkedList<UUID>) o;
+                @SuppressWarnings("unchecked") final LinkedList<UUID> otherList = (LinkedList<UUID>) o;
                 for (final UUID uuid : this) {
                     final UUID other = otherList.get(this.indexOf(uuid));
                     if (!other.equals(uuid)) {
@@ -63,15 +62,14 @@ public class Stage implements IStage {
         }
     };
     private  LinkedList<String> deliverMessages = new LinkedList<>();
-    private LinkedList<UUID> npcsToInteract = new LinkedList<UUID>() {
+    private LinkedList<UUID> npcsToInteract = new LinkedList<>() {
 
         private static final long serialVersionUID = -4086855121042524435L;
 
         @Override
         public boolean equals(final Object o) {
             if (o instanceof LinkedList) {
-                @SuppressWarnings("unchecked")
-                final LinkedList<UUID> otherList = (LinkedList<UUID>) o;
+                @SuppressWarnings("unchecked") final LinkedList<UUID> otherList = (LinkedList<UUID>) o;
                 for (final UUID uuid : this) {
                     final UUID other = otherList.get(this.indexOf(uuid));
                     if (!other.equals(uuid)) {
@@ -82,15 +80,14 @@ public class Stage implements IStage {
             return true;
         }
     };
-    private LinkedList<UUID> npcsToKill = new LinkedList<UUID>() {
+    private LinkedList<UUID> npcsToKill = new LinkedList<>() {
 
         private static final long serialVersionUID = 7705964814014176415L;
 
         @Override
         public boolean equals(final Object o) {
             if (o instanceof LinkedList) {
-                @SuppressWarnings("unchecked")
-                final LinkedList<UUID> otherList = (LinkedList<UUID>) o;
+                @SuppressWarnings("unchecked") final LinkedList<UUID> otherList = (LinkedList<UUID>) o;
                 for (final UUID uuid : this) {
                     final UUID other = otherList.get(this.indexOf(uuid));
                     if (!other.equals(uuid)) {

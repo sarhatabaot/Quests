@@ -3608,10 +3608,8 @@ public class Quester implements IQuester {
                     final String display = getCurrentStage(quest).getPasswordDisplays().get(index);
                     getQuestData(quest).passwordsSaid.set(index, true);
 
-                    plugin.getServer().getScheduler().runTask(plugin, () -> {
-                        finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
-                                new ItemStack(Material.AIR, 1)), null, null, null, null, null, display, null);
-                    });
+                    plugin.getServer().getScheduler().runTask(plugin, () -> finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                            new ItemStack(Material.AIR, 1)), null, null, null, null, null, display, null));
 
                     final int finalIndex = index;
                     dispatchedQuestIDs.addAll(dispatchMultiplayerEverything(quest, type,
