@@ -42,7 +42,6 @@ public class BlocksPrompt extends QuestsEditorNumericPrompt {
         this.stageNum = stageNum;
         this.pref = "stage" + stageNum;
     }
-    
 
     
     @Override
