@@ -242,7 +242,7 @@ public class CustomObjective implements ICustomObjective, Listener {
                     plugin.getServer().getPluginManager().callEvent(preEvent);
 
                     if (progress >= goal) {
-                        quester.finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                        quester.finishObjective(quest, new BukkitObjective(type, null, new ItemStack(Material.AIR, 1),
                                 new ItemStack(Material.AIR, goal)), null, null, null, null, null, null, obj);
 
                         // Multiplayer
@@ -250,7 +250,7 @@ public class CustomObjective implements ICustomObjective, Listener {
                         quester.dispatchMultiplayerObjectives(quest, quester.getCurrentStage(quest), (final IQuester q) -> {
                             final int old = q.getQuestData(quest).customObjectiveCounts.get(finalIndex);
                             q.getQuestData(quest).customObjectiveCounts.set(finalIndex, old + count);
-                            q.finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                            q.finishObjective(quest, new BukkitObjective(type,null, new ItemStack(Material.AIR, 1),
                                     new ItemStack(Material.AIR, goal)), null, null, null, null, null, null, obj);
                             return null;
                         });

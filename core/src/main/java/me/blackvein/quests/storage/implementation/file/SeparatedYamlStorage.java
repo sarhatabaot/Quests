@@ -55,10 +55,12 @@ public class SeparatedYamlStorage implements StorageImplementation {
 
     @Override
     public void init() throws Exception {
+        //
     }
 
     @Override
     public void close() {
+        //
     }
     
     @SuppressWarnings("deprecation")

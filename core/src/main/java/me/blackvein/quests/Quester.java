@@ -2265,7 +2265,7 @@ public class Quester implements IQuester {
             if (getQuestData(quest).blocksBroken.contains(broken)) {
                 getQuestData(quest).blocksBroken.set(getQuestData(quest).blocksBroken.indexOf(broken), newBroken);
                 if (broken.getAmount() == toBreak.getAmount()) {
-                    finishObjective(quest, new BukkitObjective(type, itemStack, toBreak), null, null, null, null, null, null, null);
+                    finishObjective(quest, new BukkitObjective(type,null, itemStack, toBreak), null, null, null, null, null, null, null);
                     
                     // Multiplayer
                     final ItemStack finalBroken = broken;
@@ -2273,7 +2273,7 @@ public class Quester implements IQuester {
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).blocksBroken.set(getQuestData(quest).blocksBroken
                                 .indexOf(finalBroken), newBroken);
-                        q.finishObjective(quest, new BukkitObjective(type, itemStack, finalToBreak), null, null, null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null,itemStack, finalToBreak), null, null, null, null, null,
                                 null, null);
                         return null;
                     });
@@ -2352,7 +2352,7 @@ public class Quester implements IQuester {
             if (getQuestData(quest).blocksDamaged.contains(damaged)) {
                 getQuestData(quest).blocksDamaged.set(getQuestData(quest).blocksDamaged.indexOf(damaged), newDamaged);
                 if (damaged.getAmount() == toDamage.getAmount()) {
-                    finishObjective(quest, new BukkitObjective(type, itemStack, toDamage), null, null, null, null, null, null, null);
+                    finishObjective(quest, new BukkitObjective(type, null, itemStack, toDamage), null, null, null, null, null, null, null);
                     
                     // Multiplayer
                     final ItemStack finalDamaged = damaged;
@@ -2360,7 +2360,7 @@ public class Quester implements IQuester {
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).blocksDamaged.set(getQuestData(quest).blocksDamaged
                                 .indexOf(finalDamaged), newDamaged);
-                        q.finishObjective(quest, new BukkitObjective(type, itemStack, finalToDamage), null, null, null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null, itemStack, finalToDamage), null, null, null, null, null,
                                 null, null);
                         return null;
                     });
@@ -2438,7 +2438,7 @@ public class Quester implements IQuester {
             if (getQuestData(quest).blocksPlaced.contains(placed)) {
                 getQuestData(quest).blocksPlaced.set(getQuestData(quest).blocksPlaced.indexOf(placed), newPlaced);
                 if (placed.getAmount() == toPlace.getAmount()) {
-                    finishObjective(quest, new BukkitObjective(type, itemStack, toPlace), null, null, null, null, null, null, null);
+                    finishObjective(quest, new BukkitObjective(type,null, itemStack, toPlace), null, null, null, null, null, null, null);
                     
                     // Multiplayer
                     final ItemStack finalPlaced = placed;
@@ -2446,7 +2446,7 @@ public class Quester implements IQuester {
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).blocksPlaced.set(getQuestData(quest).blocksPlaced
                                 .indexOf(finalPlaced), newPlaced);
-                        q.finishObjective(quest, new BukkitObjective(type, itemStack, finalToPlace), null, null, null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null,itemStack, finalToPlace), null, null, null, null, null,
                                 null, null);
                         return null;
                     });
@@ -2524,7 +2524,7 @@ public class Quester implements IQuester {
             if (getQuestData(quest).blocksUsed.contains(used)) {
                 getQuestData(quest).blocksUsed.set(getQuestData(quest).blocksUsed.indexOf(used), newUsed);
                 if (used.getAmount() == toUse.getAmount()) {
-                    finishObjective(quest, new BukkitObjective(type, itemStack, toUse), null, null, null, null, null, null, null);
+                    finishObjective(quest, new BukkitObjective(type,null, itemStack, toUse), null, null, null, null, null, null, null);
                     
                     // Multiplayer
                     final ItemStack finalUsed = used;
@@ -2532,7 +2532,7 @@ public class Quester implements IQuester {
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).blocksUsed.set(getQuestData(quest).blocksUsed
                                 .indexOf(finalUsed), newUsed);
-                        q.finishObjective(quest, new BukkitObjective(type, itemStack, finalToUse), null, null, null, null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type,null, itemStack, finalToUse), null, null, null, null, null, null,
                                 null);
                         return null;
                     });
@@ -2610,14 +2610,14 @@ public class Quester implements IQuester {
             if (getQuestData(quest).blocksCut.contains(cut)) {
                 getQuestData(quest).blocksCut.set(getQuestData(quest).blocksCut.indexOf(cut), newCut);
                 if (cut.getAmount() == toCut.getAmount()) {
-                    finishObjective(quest, new BukkitObjective(type, itemStack, toCut), null, null, null, null, null, null, null);
+                    finishObjective(quest, new BukkitObjective(type, null,itemStack, toCut), null, null, null, null, null, null, null);
                     
                     // Multiplayer
                     final ItemStack finalCut = cut;
                     final ItemStack finalToCut = toCut;
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).blocksCut.set(getQuestData(quest).blocksCut.indexOf(finalCut), newCut);
-                        q.finishObjective(quest, new BukkitObjective(type, itemStack, finalToCut), null, null, null, null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null,itemStack, finalToCut), null, null, null, null, null, null,
                                 null);
                         return null;
                     });
@@ -2665,13 +2665,13 @@ public class Quester implements IQuester {
                 if (newAmount >= toCraft) {
                     found.setAmount(toCraft);
                     getQuestData(quest).itemsCrafted.set(items.indexOf(found), found);
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type, null, new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
 
                     // Multiplayer
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).itemsCrafted.set(items.indexOf(found), found);
-                        q.finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null,
                                 null, null, null, null);
                         return null;
                     });
@@ -2723,13 +2723,13 @@ public class Quester implements IQuester {
                 if (newAmount >= toSmelt) {
                     found.setAmount(toSmelt);
                     getQuestData(quest).itemsSmelted.set(items.indexOf(found), found);
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
 
                     // Multiplayer
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).itemsSmelted.set(items.indexOf(found), found);
-                        q.finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type,null, new ItemStack(m, 1), found), null, null, null,
                                 null, null, null, null);
                         return null;
                     });
@@ -2784,13 +2784,13 @@ public class Quester implements IQuester {
                 if (newAmount >= toEnchant) {
                     found.setAmount(toEnchant);
                     getQuestData(quest).itemsEnchanted.set(items.indexOf(found), found);
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type,null, new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
 
                     // Multiplayer
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).itemsEnchanted.set(items.indexOf(found), found);
-                        q.finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null,
                                 null, null, null, null);
                         return null;
                     });
@@ -2850,13 +2850,13 @@ public class Quester implements IQuester {
                 if (newAmount >= toEnchant) {
                     found.setAmount(toEnchant);
                     getQuestData(quest).itemsEnchanted.set(items.indexOf(found), found);
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
 
                     // Multiplayer
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).itemsEnchanted.set(items.indexOf(found), found);
-                        q.finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null,
                                 null, null, null, null);
                         return null;
                     });
@@ -2908,13 +2908,13 @@ public class Quester implements IQuester {
                 if (newAmount >= toBrew) {
                     found.setAmount(toBrew);
                     getQuestData(quest).itemsBrewed.set(items.indexOf(found), found);
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
 
                     // Multiplayer
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).itemsBrewed.set(items.indexOf(found), found);
-                        q.finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type,null, new ItemStack(m, 1), found), null, null, null,
                                 null, null, null, null);
                         return null;
                     });
@@ -2966,13 +2966,13 @@ public class Quester implements IQuester {
                 if (newAmount >= toConsume) {
                     found.setAmount(toConsume);
                     getQuestData(quest).itemsConsumed.set(items.indexOf(found), found);
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
                     
                     // Multiplayer
                     dispatchMultiplayerObjectives(quest, getCurrentStage(quest), (final IQuester q) -> {
                         q.getQuestData(quest).itemsConsumed.set(items.indexOf(found), found);
-                        q.finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null,
+                        q.finishObjective(quest, new BukkitObjective(type,null, new ItemStack(m, 1), found), null, null, null,
                                 null, null, null, null);
                         return null;
                     });
@@ -3048,7 +3048,7 @@ public class Quester implements IQuester {
                         player.getInventory().setItem(index, null);
                     }
                     player.updateInventory();
-                    finishObjective(quest, new BukkitObjective(type, new ItemStack(m, 1), found), null, null, null, null,
+                    finishObjective(quest, new BukkitObjective(type, null,new ItemStack(m, 1), found), null, null, null, null,
                             null, null, null);
                 } else {
                     found.setAmount(newAmount);
@@ -3103,7 +3103,7 @@ public class Quester implements IQuester {
 
         if (!npcsInteracted) {
             getQuestData(quest).npcsInteracted.set(index, true);
-            finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+            finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                             new ItemStack(Material.AIR, 1)), null, null, npc, null, null, null, null);
 
             dispatchedQuestIDs.addAll(dispatchMultiplayerEverything(quest, type,
@@ -3148,7 +3148,7 @@ public class Quester implements IQuester {
         if (npcsKilled < npcsToKill) {
             getQuestData(quest).npcsNumKilled.set(index, newNpcsKilled);
             if (newNpcsKilled >= npcsToKill) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, npcsToKill)), null, null, npc, null, null, null, null);
             }
 
@@ -3201,7 +3201,7 @@ public class Quester implements IQuester {
             questData.setCowsMilked(newCowsMilked);
             
             if (newCowsMilked >= cowsToMilk) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, cowsToMilk)), null, null, null, null, null, null, null);
             }
 
@@ -3254,7 +3254,7 @@ public class Quester implements IQuester {
             questData.setFishCaught(newFishCaught);
             
             if (newFishCaught >= fishToCatch) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, fishToCatch)), null, null, null, null, null, null, null);
             }
 
@@ -3329,7 +3329,7 @@ public class Quester implements IQuester {
         if (mobsKilled < mobsToKill) {
             questData.mobNumKilled.set(index, newMobsKilled);
             if (newMobsKilled >= mobsToKill) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type,null, new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, mobsToKill)), entityType, null, null, null, null, null, null);
             }
 
@@ -3382,7 +3382,7 @@ public class Quester implements IQuester {
         if (playersKilled < playersToKill) {
             questData.setPlayersKilled(newPlayersKilled);
             if (newPlayersKilled >= playersToKill) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type,null, new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, playersToKill)), null, null, null, null, null, null, null);
             }
 
@@ -3447,7 +3447,7 @@ public class Quester implements IQuester {
                         plugin.getServer().getPluginManager().callEvent(preEvent);
                         
                         getQuestData(quest).locationsReached.set(index, true);
-                        finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                        finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                                 new ItemStack(Material.AIR, 1)), null, null, null, toReach, null, null, null);
 
                         int finalIndex = index;
@@ -3518,7 +3518,7 @@ public class Quester implements IQuester {
         if (mobsTamed < mobsToTame) {
             getQuestData(quest).mobsTamed.set(index, newMobsToTame);
             if (newMobsToTame >= mobsToTame) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, mobsToTame)), entityType, null, null, null, null, null, null);
             }
 
@@ -3573,7 +3573,7 @@ public class Quester implements IQuester {
         if (sheepSheared < sheepToShear) {
             getQuestData(quest).sheepSheared.set(index, newSheepSheared);
             if (newSheepSheared >= sheepToShear) {
-                finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                finishObjective(quest, new BukkitObjective(type, null, new ItemStack(Material.AIR, 1),
                         new ItemStack(Material.AIR, sheepToShear)), null, null, null, null, color, null, null);
             }
 
@@ -3614,7 +3614,7 @@ public class Quester implements IQuester {
                     final String display = getCurrentStage(quest).getPasswordDisplays().get(index);
                     getQuestData(quest).passwordsSaid.set(index, true);
 
-                    plugin.getServer().getScheduler().runTask(plugin, () -> finishObjective(quest, new BukkitObjective(type, new ItemStack(Material.AIR, 1),
+                    plugin.getServer().getScheduler().runTask(plugin, () -> finishObjective(quest, new BukkitObjective(type, null,new ItemStack(Material.AIR, 1),
                             new ItemStack(Material.AIR, 1)), null, null, null, null, null, display, null));
 
                     final int finalIndex = index;
