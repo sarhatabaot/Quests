@@ -4530,12 +4530,6 @@ public class Quester implements IQuester {
                     if (stage != null) {
                         quest.updateCompass(this, stage);
                         // TODO - decide whether or not to handle this
-                        /*if (q.equals(quest) == false) {
-                            if (getPlayer() != null && getPlayer().isOnline()) {
-                                quitQuest(quest, ChatColor.GOLD + Lang.get("questModified")
-                                        .replace("<quest>", ChatColor.DARK_PURPLE + quest.getName() + ChatColor.GOLD));
-                            }
-                        }*/
                     }
                     exists = true;
                     break;

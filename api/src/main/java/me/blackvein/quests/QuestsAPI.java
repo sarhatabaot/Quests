@@ -72,27 +72,4 @@ public interface QuestsAPI {
 
     ConditionFactory getConditionFactory();
 
-    /*ConvoListener getConvoListener();
-
-    BlockListener getBlockListener();
-
-    ItemListener getItemListener();
-
-    NpcListener getNpcListener();
-
-    PlayerListener getPlayerListener();
-
-    UniteListener getUniteListener();
-
-    NpcEffectThread getNpcEffectThread();
-
-    PlayerMoveThread getPlayerMoveThread();
-
-    PartiesListener getPartiesListener();
-
-    DenizenTrigger getDenizenTrigger();
-
-    LocaleManager getLocaleManager();
-
-    Storage getStorage();*/
 }

@@ -54,13 +54,4 @@ public interface QuestFactory {
 
     void saveQuest(final ConversationContext context, final ConfigurationSection section);
 
-    /*void saveRequirements(final ConversationContext context, final ConfigurationSection section);
-
-    void saveStages(final ConversationContext context, final ConfigurationSection section);
-
-    void saveRewards(final ConversationContext context, final ConfigurationSection section);
-
-    void savePlanner(final ConversationContext context, final ConfigurationSection section);
-
-    void saveOptions(final ConversationContext context, final ConfigurationSection section);*/
 }
