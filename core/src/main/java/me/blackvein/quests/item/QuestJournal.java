@@ -67,8 +67,7 @@ public class QuestJournal {
         } else {
             final List<BaseComponent[]> pages = new LinkedList<>();
             final List<IQuest> sortedList = owner.getCurrentQuestsTemp().keySet().stream()
-                    .sorted(Comparator.comparing(IQuest::getName))
-                    .collect(Collectors.toList());
+                    .sorted(Comparator.comparing(IQuest::getName)).toList();
             for (final IQuest quest : sortedList) {
                 final TextComponent title = new TextComponent(quest.getName());
                 title.setColor(net.md_5.bungee.api.ChatColor.DARK_PURPLE);
