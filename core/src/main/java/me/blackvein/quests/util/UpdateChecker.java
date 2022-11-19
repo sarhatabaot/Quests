@@ -32,17 +32,20 @@ public class UpdateChecker {
     }
 
     public void getVersion(final Consumer<String> consumer) {
-        if (plugin.getSettings().canUpdateCheck()) {
-            Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
-                try (final InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource="
-                        + this.resourceId).openStream(); final Scanner scanner = new Scanner(inputStream)) {
-                    if (scanner.hasNext()) {
-                        consumer.accept(scanner.next());
-                    }
-                } catch (IOException e) {
-                    this.plugin.getLogger().info("Update check failed: " + e.getMessage());
-                }
-            });
+        if (!plugin.getSettings().canUpdateCheck()) {
+            return;
         }
+
+        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
+            try (final InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource="
+                    + this.resourceId).openStream(); final Scanner scanner = new Scanner(inputStream)) {
+                if (scanner.hasNext()) {
+                    consumer.accept(scanner.next());
+                }
+            } catch (IOException e) {
+                this.plugin.getLogger().info("Update check failed: " + e.getMessage());
+            }
+        });
+
     }
 }
