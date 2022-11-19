@@ -21,8 +21,10 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * For use when creating a new ConversationContext
@@ -58,6 +60,11 @@ public class FakeConversable implements Conversable {
 
     public void sendRawMessage(@NotNull final String message) {
         lastSentMessage = message;
+    }
+
+    @Override
+    public void sendRawMessage(@Nullable final UUID uuid, @NotNull final String s) {
+        //fake conversation
     }
 
     public Server getServer() {
@@ -102,9 +109,11 @@ public class FakeConversable implements Conversable {
     }
 
     public void removeAttachment(final PermissionAttachment attachment) {
+        //fake conversation
     }
 
     public void recalculatePermissions() {
+        //fake conversation
     }
 
     public Set<PermissionAttachmentInfo> getEffectivePermissions() {
@@ -116,6 +125,7 @@ public class FakeConversable implements Conversable {
     }
 
     public void setOp(final boolean value) {
+        //fake conversation
     }
 }
 

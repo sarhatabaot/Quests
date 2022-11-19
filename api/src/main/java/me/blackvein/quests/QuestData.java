@@ -29,7 +29,7 @@ public class QuestData {
         this.quester = quester;
     }
     
-    public LinkedList<ItemStack> blocksBroken = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> blocksBroken = new LinkedList<>() {
 
         private static final long serialVersionUID = -6071822509475270168L;
 
@@ -73,7 +73,7 @@ public class QuestData {
         }
     };
 
-    public LinkedList<ItemStack> blocksDamaged = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> blocksDamaged = new LinkedList<>() {
 
         private static final long serialVersionUID = -4211891633163257743L;
 
@@ -117,7 +117,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> blocksPlaced = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> blocksPlaced = new LinkedList<>() {
 
         private static final long serialVersionUID = 4226366446050903433L;
 
@@ -161,7 +161,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> blocksUsed = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> blocksUsed = new LinkedList<>() {
 
         private static final long serialVersionUID = -9057864863810306890L;
 
@@ -205,7 +205,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> blocksCut = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> blocksCut = new LinkedList<>() {
 
         private static final long serialVersionUID = -8204359763290995080L;
 
@@ -249,7 +249,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> itemsCrafted = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> itemsCrafted = new LinkedList<>() {
 
         private static final long serialVersionUID = 2774356294049526105L;
 
@@ -293,7 +293,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> itemsSmelted = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> itemsSmelted = new LinkedList<>() {
 
         private static final long serialVersionUID = 2774356235274526106L;
 
@@ -337,7 +337,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> itemsEnchanted = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> itemsEnchanted = new LinkedList<>() {
 
         private static final long serialVersionUID = 416869352279205852L;
 
@@ -381,7 +381,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> itemsBrewed = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> itemsBrewed = new LinkedList<>() {
 
         private static final long serialVersionUID = 2774356235274526107L;
 
@@ -425,10 +425,10 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> itemsConsumed = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> itemsConsumed = new LinkedList<>() {
 
         private static final long serialVersionUID = -5475073316902757883L;
-        
+
         @Override
         public ItemStack set(final int index, final ItemStack key) {
             final ItemStack data = super.set(index, key);
@@ -469,7 +469,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<ItemStack> itemsDelivered = new LinkedList<ItemStack>() {
+    public LinkedList<ItemStack> itemsDelivered = new LinkedList<>() {
 
         private static final long serialVersionUID = 2712497347022734646L;
 
@@ -513,7 +513,7 @@ public class QuestData {
         }
     };
 
-    public LinkedList<Boolean> npcsInteracted = new LinkedList<Boolean>() {
+    public LinkedList<Boolean> npcsInteracted = new LinkedList<>() {
 
         private static final long serialVersionUID = 2447610341508300847L;
 
@@ -580,7 +580,7 @@ public class QuestData {
         }
     };
 
-    public LinkedList<Integer> npcsNumKilled = new LinkedList<Integer>() {
+    public LinkedList<Integer> npcsNumKilled = new LinkedList<>() {
 
         private static final long serialVersionUID = 1849192351499071688L;
 
@@ -647,7 +647,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<Integer> mobNumKilled = new LinkedList<Integer>() {
+    public LinkedList<Integer> mobNumKilled = new LinkedList<>() {
 
         private static final long serialVersionUID = 2228385647091499176L;
 
@@ -714,7 +714,7 @@ public class QuestData {
         }
     };
 
-    public LinkedList<Integer> mobsTamed = new LinkedList<Integer>() {
+    public LinkedList<Integer> mobsTamed = new LinkedList<>() {
 
         private static final long serialVersionUID = 3851959471748032699L;
 
@@ -785,7 +785,7 @@ public class QuestData {
 
     private int cowsMilked = 0;
 
-    public LinkedList<Integer> sheepSheared = new LinkedList<Integer>() {
+    public LinkedList<Integer> sheepSheared = new LinkedList<>() {
 
         private static final long serialVersionUID = -6016463677133534885L;
 
@@ -854,7 +854,7 @@ public class QuestData {
 
     private int playersKilled = 0;
     
-    public LinkedList<Boolean> locationsReached = new LinkedList<Boolean>() {
+    public LinkedList<Boolean> locationsReached = new LinkedList<>() {
 
         private static final long serialVersionUID = -8802305642082466541L;
 
@@ -921,7 +921,7 @@ public class QuestData {
         }
     };
     
-    public LinkedList<Boolean> passwordsSaid = new LinkedList<Boolean>() {
+    public LinkedList<Boolean> passwordsSaid = new LinkedList<>() {
 
         private static final long serialVersionUID = -4297291041298491402L;
 
@@ -988,7 +988,7 @@ public class QuestData {
         }
     };
 
-    public LinkedList<Integer> customObjectiveCounts = new LinkedList<Integer>() {
+    public LinkedList<Integer> customObjectiveCounts = new LinkedList<>() {
 
         private static final long serialVersionUID = 6027656575740406823L;
 

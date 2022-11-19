@@ -103,7 +103,7 @@ public class Quester implements IQuester {
     private String compassTargetQuestId;
     private long lastNotifiedCondition = 0L;
     protected ConcurrentHashMap<Integer, IQuest> timers = new ConcurrentHashMap<>();
-    protected ConcurrentHashMap<IQuest, Integer> currentQuests = new ConcurrentHashMap<IQuest, Integer>() {
+    protected ConcurrentHashMap<IQuest, Integer> currentQuests = new ConcurrentHashMap<>() {
 
         private static final long serialVersionUID = 6361484975823846780L;
 
@@ -133,7 +133,7 @@ public class Quester implements IQuester {
             updateJournal();
         }
     };
-    protected ConcurrentSkipListSet<IQuest> completedQuests = new ConcurrentSkipListSet<IQuest>() {
+    protected ConcurrentSkipListSet<IQuest> completedQuests = new ConcurrentSkipListSet<>() {
 
         private static final long serialVersionUID = -269110128568487000L;
 
@@ -143,7 +143,7 @@ public class Quester implements IQuester {
             updateJournal();
             return b;
         }
-        
+
         @Override
         public boolean addAll(final @NotNull Collection<? extends IQuest> c) {
             final boolean b = super.addAll(c);
@@ -163,7 +163,7 @@ public class Quester implements IQuester {
             updateJournal();
             return b;
         }
-        
+
         @Override
         public boolean removeAll(final Collection<?> c) {
             final boolean b = super.removeAll(c);
@@ -172,7 +172,7 @@ public class Quester implements IQuester {
         }
     };
     protected ConcurrentHashMap<IQuest, Long> completedTimes = new ConcurrentHashMap<>();
-    protected ConcurrentHashMap<IQuest, Integer> amountsCompleted = new ConcurrentHashMap<IQuest, Integer>() {
+    protected ConcurrentHashMap<IQuest, Integer> amountsCompleted = new ConcurrentHashMap<>() {
 
         private static final long serialVersionUID = 5475202358792520975L;
 
@@ -202,7 +202,7 @@ public class Quester implements IQuester {
             updateJournal();
         }
     };
-    protected ConcurrentHashMap<IQuest, QuestData> questData = new ConcurrentHashMap<IQuest, QuestData>() {
+    protected ConcurrentHashMap<IQuest, QuestData> questData = new ConcurrentHashMap<>() {
 
         private static final long serialVersionUID = -4607112433003926066L;
 
@@ -685,7 +685,7 @@ public class Quester implements IQuester {
             // Ensure that we're past the initial duration
             if (currentTime > end) {
                 final int maxSize = 2;
-                final LinkedHashMap<Long, Long> mostRecent = new LinkedHashMap<Long, Long>() {
+                final LinkedHashMap<Long, Long> mostRecent = new LinkedHashMap<>() {
                     private static final long serialVersionUID = 3046838061019897713L;
 
                     @Override

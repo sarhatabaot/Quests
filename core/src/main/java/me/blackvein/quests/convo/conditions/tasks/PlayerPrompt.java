@@ -295,7 +295,7 @@ public class PlayerPrompt extends QuestsEditorNumericPrompt {
                         context.setSessionData(CK.C_WHILE_HOLDING_MAIN_HAND, items);
                     }
                 } else {
-                    final LinkedList<ItemStack> items = new LinkedList<ItemStack>();
+                    final LinkedList<ItemStack> items = new LinkedList<>();
                     items.add((ItemStack) context.getSessionData("tempStack"));
                     context.setSessionData(CK.C_WHILE_HOLDING_MAIN_HAND, items);
                 }

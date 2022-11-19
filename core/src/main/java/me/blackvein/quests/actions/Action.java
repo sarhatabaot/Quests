@@ -49,16 +49,14 @@ public class Action implements IAction {
     protected int thunderDuration = 0;
     protected int timer = 0;
     protected boolean cancelTimer = false;
-    protected LinkedList<QuestMob> mobSpawns = new LinkedList<QuestMob>() {
+    protected LinkedList<QuestMob> mobSpawns = new LinkedList<>() {
 
         private static final long serialVersionUID = -761974607799449780L;
 
         @Override
         public boolean equals(final Object o) {
             if (o instanceof LinkedList) {
-                @SuppressWarnings("unchecked")
-                final
-                LinkedList<QuestMob> other = (LinkedList<QuestMob>) o;
+                @SuppressWarnings("unchecked") final LinkedList<QuestMob> other = (LinkedList<QuestMob>) o;
                 if (size() != other.size()) {
                     return false;
                 }
