@@ -25,7 +25,7 @@ public class BukkitObjective implements Objective {
     private final int goal;
     private final Object progressObj;
     private final Object goalObj;
-    
+
     public BukkitObjective(final ObjectiveType type, @Nullable final String message, final int progress,
                            final int goal) {
         this.type = type;

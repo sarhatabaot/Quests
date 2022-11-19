@@ -21,10 +21,11 @@ public class BukkitPlanner implements Planner {
     public long repeat = -1;
     public long cooldown = -1;
     public boolean override = false;
-    
+
     public String getStart() {
         return start;
     }
+
     public long getStartInMillis() {
         if (start == null) {
             return -1;
@@ -37,15 +38,19 @@ public class BukkitPlanner implements Planner {
         cal.setTimeZone(tz);
         return cal.getTimeInMillis();
     }
+
     public boolean hasStart() {
         return start != null;
     }
+
     public void setStart(final String start) {
         this.start = start;
     }
+
     public String getEnd() {
         return end;
     }
+
     public long getEndInMillis() {
         if (end == null) {
             return -1;
@@ -58,33 +63,43 @@ public class BukkitPlanner implements Planner {
         cal.setTimeZone(tz);
         return cal.getTimeInMillis();
     }
+
     public boolean hasEnd() {
         return end != null;
     }
+
     public void setEnd(final String end) {
         this.end = end;
     }
+
     public long getRepeat() {
         return repeat;
     }
+
     public boolean hasRepeat() {
         return repeat != -1;
     }
+
     public void setRepeat(final long repeat) {
         this.repeat = repeat;
     }
+
     public long getCooldown() {
         return cooldown;
     }
+
     public boolean hasCooldown() {
         return cooldown != -1;
     }
+
     public void setCooldown(final long cooldown) {
         this.cooldown = cooldown;
     }
+
     public boolean getOverride() {
         return override;
     }
+
     public void setOverride(final boolean override) {
         this.override = override;
     }
