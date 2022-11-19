@@ -16,6 +16,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -92,7 +93,7 @@ public abstract class ParticleProvider {
      * @param location The location to play the particle at.
      * @param particle The pre-built particle.
      */
-    public static void sendToPlayer(final Player player, final Location location, final PreBuiltParticle particle) {
+    public static void sendToPlayer(final Player player, final @NotNull Location location, final @NotNull PreBuiltParticle particle) {
         final Location pos = location.clone();
         if (particle.getVector() != null) {
             pos.add(particle.getVector());
