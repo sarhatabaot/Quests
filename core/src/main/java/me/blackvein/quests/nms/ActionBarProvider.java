@@ -17,7 +17,7 @@ import org.bukkit.entity.Player;
 public abstract class ActionBarProvider {
 
     private static ActionBarProvider loaded = new ActionBarProviderBukkit();
-    
+
     abstract void sendActionBarPacket(Player player, String message);
 
     /**

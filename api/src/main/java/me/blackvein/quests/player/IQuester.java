@@ -82,6 +82,7 @@ public interface IQuester extends Comparable<IQuester> {
 
     /**
      * @deprecated Do not use
+     * Do not use but there is no alternative.. ok
      */
     ConcurrentHashMap<IQuest, Integer> getCurrentQuestsTemp();
 

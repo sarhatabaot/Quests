@@ -27,8 +27,8 @@ public class QuesterPreChangeStageEvent extends QuesterEvent implements Cancella
     private final IQuest quest;
     private final IStage current;
     private final IStage next;
-    private boolean cancel = false;;
-    
+    private boolean cancel = false;
+
     public QuesterPreChangeStageEvent(final Quester quester, final IQuest quest, final IStage current, final IStage next) {
         super(quester);
         this.quest = quest;

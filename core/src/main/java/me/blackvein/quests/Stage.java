@@ -781,8 +781,7 @@ public class Stage implements IStage {
         if (playersToKill != null) { return true; }
         if (!mobsToKill.isEmpty()) {return true; }
         if (!mobsToTame.isEmpty()) { return true; }
-        if (!sheepToShear.isEmpty()) { return true; }
-        return false;
+        return !sheepToShear.isEmpty();
     }
     
     /**

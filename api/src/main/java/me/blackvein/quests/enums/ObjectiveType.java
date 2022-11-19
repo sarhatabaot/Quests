@@ -57,7 +57,7 @@ public enum ObjectiveType {
         }
     }
     
-    private ObjectiveType(final int typeId, final String name) {
+    ObjectiveType(final int typeId, final String name) {
         this.typeId = (byte) typeId;
         // Capitalize first letter for legacy reasons
         this.name = name.substring(0, 1).toUpperCase() + name.substring(1);
