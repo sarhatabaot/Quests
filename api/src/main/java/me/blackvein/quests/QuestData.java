@@ -25,6 +25,9 @@ import java.util.LinkedList;
 public class QuestData {
 
     private final IQuester quester;
+    private long delayStartTime = 0;
+    private long delayTimeLeft = -1;
+    private boolean doJournalUpdate = true;
 
     public QuestData(final IQuester quester) {
         this.quester = quester;
@@ -1075,9 +1078,7 @@ public class QuestData {
         }
     };
 
-    private long delayStartTime = 0;
-    private long delayTimeLeft = -1;
-    private boolean doJournalUpdate = true;
+
 
     public LinkedList<ItemStack> getBlocksBroken() {
         return blocksBroken;
