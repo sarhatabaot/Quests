@@ -210,112 +210,120 @@ public class BlockListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockPlace(final BlockPlaceEvent evt) {
         final Player player = evt.getPlayer();
-        if (plugin.canUseQuests(player.getUniqueId())) {
-            final ItemStack blockItemStack = new ItemStack(evt.getBlock().getType(), 1, evt.getBlock().getState()
-                    .getData().toItemStack().getDurability());
-            final Quester quester = plugin.getQuester(player.getUniqueId());
-            final ObjectiveType placeType = ObjectiveType.PLACE_BLOCK;
-            final ObjectiveType breakType = ObjectiveType.BREAK_BLOCK;
-            final Set<String> dispatchedPlaceQuestIDs = new HashSet<>();
-            final Set<String> dispatchedBreakQuestIDs = new HashSet<>();
-            for (final IQuest quest : plugin.getLoadedQuests()) {
-                if (!evt.isCancelled()) {
-                    if (!quester.meetsCondition(quest, true)) {
-                        continue;
-                    }
+        if (!plugin.canUseQuests(player.getUniqueId())) {
+            return;
+        }
 
-                    if (quester.getCurrentQuestsTemp().containsKey(quest)) {
-                        final IStage currentStage = quester.getCurrentStage(quest);
+        final ItemStack blockItemStack = new ItemStack(evt.getBlock().getType(), 1, evt.getBlock().getState()
+                .getData().toItemStack().getDurability());
+        final Quester quester = plugin.getQuester(player.getUniqueId());
+        final ObjectiveType placeType = ObjectiveType.PLACE_BLOCK;
+        final ObjectiveType breakType = ObjectiveType.BREAK_BLOCK;
+        final Set<String> dispatchedPlaceQuestIDs = new HashSet<>();
+        final Set<String> dispatchedBreakQuestIDs = new HashSet<>();
+        for (final IQuest quest : plugin.getLoadedQuests()) {
+            if (evt.isCancelled()) {
+                continue;
+            }
 
-                        if (currentStage.containsObjective(placeType)) {
-                            quester.placeBlock(quest, blockItemStack);
+            if (!quester.meetsCondition(quest, true)) {
+                continue;
+            }
+
+            if (quester.getCurrentQuestsTemp().containsKey(quest)) {
+                final IStage currentStage = quester.getCurrentStage(quest);
+
+                if (currentStage.containsObjective(placeType)) {
+                    quester.placeBlock(quest, blockItemStack);
+                }
+                if (!quest.getOptions().canIgnoreBlockReplace()) {
+                    continue;
+                }
+
+                // Ignore blocks replaced once broken (self)
+                if (currentStage.containsObjective(breakType)) {
+                    for (final ItemStack is : quester.getQuestData(quest).blocksBroken) {
+                        if (evt.getBlock().getType().equals(is.getType()) && is.getAmount() > 0) {
+                            ItemStack toBreak = new ItemStack(is.getType(), 64);
+                            for (final ItemStack stack : currentStage.getBlocksToBreak()) {
+                                if (ItemUtil.compareItems(is, stack, true) == 0) {
+                                    toBreak = stack;
+                                }
+                            }
+
+                            final QuesterPreUpdateObjectiveEvent preEvent
+                                    = new QuesterPreUpdateObjectiveEvent(quester, quest,
+                                    new BukkitObjective(placeType, null, is.getAmount(), toBreak.getAmount()));
+                            plugin.getServer().getPluginManager().callEvent(preEvent);
+
+                            final int index = quester.getQuestData(quest).blocksBroken.indexOf(is);
+                            final int newAmount = is.getAmount() - 1;
+                            is.setAmount(newAmount);
+                            quester.getQuestData(quest).blocksBroken.set(index, is);
+
+                            final QuesterPostUpdateObjectiveEvent postEvent
+                                    = new QuesterPostUpdateObjectiveEvent(quester, quest,
+                                    new BukkitObjective(placeType, null, newAmount, toBreak.getAmount()));
+                            plugin.getServer().getPluginManager().callEvent(postEvent);
                         }
-
-                        if (quest.getOptions().canIgnoreBlockReplace()) {
-                            // Ignore blocks replaced once broken (self)
-                            if (currentStage.containsObjective(breakType)) {
-                                for (final ItemStack is : quester.getQuestData(quest).blocksBroken) {
+                    }
+                }
+                // Ignore blocks replaced once broken (party support)
+                dispatchedBreakQuestIDs.addAll(quester.dispatchMultiplayerEverything(quest, breakType,
+                        (final IQuester q, final IQuest cq) -> {
+                            if (!dispatchedBreakQuestIDs.contains(cq.getId())) {
+                                for (final ItemStack is : q.getQuestData(cq).blocksBroken) {
                                     if (evt.getBlock().getType().equals(is.getType()) && is.getAmount() > 0) {
                                         ItemStack toBreak = new ItemStack(is.getType(), 64);
-                                        for (final ItemStack stack : currentStage.getBlocksToBreak()) {
+                                        for (final ItemStack stack : quester.getCurrentStage(cq).getBlocksToBreak()) {
                                             if (ItemUtil.compareItems(is, stack, true) == 0) {
                                                 toBreak = stack;
                                             }
                                         }
 
                                         final QuesterPreUpdateObjectiveEvent preEvent
-                                                = new QuesterPreUpdateObjectiveEvent(quester, quest,
-                                                new BukkitObjective(placeType, null, is.getAmount(), toBreak.getAmount()));
+                                                = new QuesterPreUpdateObjectiveEvent((Quester) q, cq,
+                                                new BukkitObjective(breakType, null, is.getAmount(), toBreak.getAmount()));
                                         plugin.getServer().getPluginManager().callEvent(preEvent);
 
-                                        final int index = quester.getQuestData(quest).blocksBroken.indexOf(is);
+                                        final int index = q.getQuestData(cq).blocksBroken.indexOf(is);
                                         final int newAmount = is.getAmount() - 1;
                                         is.setAmount(newAmount);
-                                        quester.getQuestData(quest).blocksBroken.set(index, is);
+                                        q.getQuestData(cq).blocksBroken.set(index, is);
 
                                         final QuesterPostUpdateObjectiveEvent postEvent
-                                                = new QuesterPostUpdateObjectiveEvent(quester, quest,
-                                                new BukkitObjective(placeType, null, newAmount, toBreak.getAmount()));
+                                                = new QuesterPostUpdateObjectiveEvent((Quester) q, cq,
+                                                new BukkitObjective(breakType, null, newAmount, toBreak.getAmount()));
                                         plugin.getServer().getPluginManager().callEvent(postEvent);
                                     }
                                 }
                             }
-                            // Ignore blocks replaced once broken (party support)
-                            dispatchedBreakQuestIDs.addAll(quester.dispatchMultiplayerEverything(quest, breakType,
-                                    (final IQuester q, final IQuest cq) -> {
-                                        if (!dispatchedBreakQuestIDs.contains(cq.getId())) {
-                                            for (final ItemStack is : q.getQuestData(cq).blocksBroken) {
-                                                if (evt.getBlock().getType().equals(is.getType()) && is.getAmount() > 0) {
-                                                    ItemStack toBreak = new ItemStack(is.getType(), 64);
-                                                    for (final ItemStack stack : quester.getCurrentStage(cq).getBlocksToBreak()) {
-                                                        if (ItemUtil.compareItems(is, stack, true) == 0) {
-                                                            toBreak = stack;
-                                                        }
-                                                    }
+                            return null;
+                        }));
 
-                                                    final QuesterPreUpdateObjectiveEvent preEvent
-                                                            = new QuesterPreUpdateObjectiveEvent((Quester) q, cq,
-                                                            new BukkitObjective(breakType, null, is.getAmount(), toBreak.getAmount()));
-                                                    plugin.getServer().getPluginManager().callEvent(preEvent);
-
-                                                    final int index = q.getQuestData(cq).blocksBroken.indexOf(is);
-                                                    final int newAmount = is.getAmount() - 1;
-                                                    is.setAmount(newAmount);
-                                                    q.getQuestData(cq).blocksBroken.set(index, is);
-
-                                                    final QuesterPostUpdateObjectiveEvent postEvent
-                                                            = new QuesterPostUpdateObjectiveEvent((Quester) q, cq,
-                                                            new BukkitObjective(breakType, null, newAmount, toBreak.getAmount()));
-                                                    plugin.getServer().getPluginManager().callEvent(postEvent);
-                                                }
-                                            }
-                                        }
-                                        return null;
-                                    }));
-                        }
-                    }
-
-                    dispatchedPlaceQuestIDs.addAll(quester.dispatchMultiplayerEverything(quest, placeType,
-                            (final IQuester q, final IQuest cq) -> {
-                                if (!dispatchedPlaceQuestIDs.contains(cq.getId())) {
-                                    q.placeBlock(cq, blockItemStack);
-                                }
-                                return null;
-                            }));
-                }
             }
+
+            dispatchedPlaceQuestIDs.addAll(quester.dispatchMultiplayerEverything(quest, placeType,
+                    (final IQuester q, final IQuest cq) -> {
+                        if (!dispatchedPlaceQuestIDs.contains(cq.getId())) {
+                            q.placeBlock(cq, blockItemStack);
+                        }
+                        return null;
+                    }));
+
         }
+
     }
 
     @EventHandler
-    public void onBlockUse(final PlayerInteractEvent evt) {
-        EquipmentSlot slot = evt.getHand();
+    public void onBlockUse(final PlayerInteractEvent event) {
+        EquipmentSlot slot = event.getHand();
         if (!(slot == null || slot.equals(EquipmentSlot.HAND))) {
             return;
         }
         // If the event is fired by HAND (main hand)
-        final Player player = evt.getPlayer();
-        if (!plugin.canUseQuests(evt.getPlayer().getUniqueId())) {
+        final Player player = event.getPlayer();
+        if (!plugin.canUseQuests(event.getPlayer().getUniqueId())) {
             return;
         }
 
@@ -323,16 +331,16 @@ public class BlockListener implements Listener {
         if (quester.isSelectingBlock()) {
             return;
         }
-        if (!evt.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+        if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
 
-        if (evt.isCancelled() || evt.getClickedBlock() == null) {
+        if (event.isCancelled() || event.getClickedBlock() == null) {
             return;
         }
 
 
-        final ItemStack blockItemStack = new ItemStack(evt.getClickedBlock().getType(), 1, evt
+        final ItemStack blockItemStack = new ItemStack(event.getClickedBlock().getType(), 1, event
                 .getClickedBlock().getState().getData().toItemStack().getDurability());
         final ObjectiveType type = ObjectiveType.USE_BLOCK;
         final Set<String> dispatchedQuestIDs = new HashSet<>();
