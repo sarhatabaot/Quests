@@ -55,14 +55,14 @@ import java.util.UUID;
 public class QuestMainPrompt extends QuestsEditorNumericPrompt {
     
     private final Quests plugin;
+    private final int size = 14;
     
     public QuestMainPrompt(final ConversationContext context) {
         super(context);
         this.plugin = (Quests)context.getPlugin();
     }
 
-    private final int size = 14;
-    
+
     @Override
     public int getSize() {
         return size;
