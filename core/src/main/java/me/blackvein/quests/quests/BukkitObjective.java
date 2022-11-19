@@ -26,7 +26,7 @@ public class BukkitObjective implements Objective {
     private final Object progressObj;
     private final Object goalObj;
 
-    
+
     /**
      * @deprecated Use {@link #BukkitObjective(ObjectiveType, String, Object, Object)} with null message
      */
@@ -112,11 +112,11 @@ public class BukkitObjective implements Objective {
     }
 
     public @Nullable ItemStack getProgressAsItem() {
-        return progressObj instanceof ItemStack ? (ItemStack) progressObj : null;
+        return progressObj instanceof ItemStack item ? item : null;
     }
 
     public @Nullable ItemStack getGoalAsItem() {
-        return goalObj instanceof ItemStack ? (ItemStack) goalObj : null;
+        return goalObj instanceof ItemStack item ? item : null;
     }
 
     public @Nullable CountableMob getProgressAsMob() {
