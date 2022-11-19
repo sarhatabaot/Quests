@@ -52,6 +52,21 @@ public class CitizensListener implements Listener {
         this.plugin = plugin;
     }
 
+    private Pair<LinkedList<Integer>, Integer> getDeliverItemMatches(IQuester quester, IQuest quest, ItemStack hand) {
+        LinkedList<Integer> matches = new LinkedList<>();
+        int reasonCode = 0;
+        int currentIndex = 0;
+        for (final ItemStack is : quester.getCurrentStage(quest).getItemsToDeliver()) {
+            currentIndex++;
+            reasonCode = ItemUtil.compareItems(is, hand, true);
+            if (reasonCode == 0) {
+                matches.add(currentIndex);
+            }
+        }
+        return new Pair<>(matches, reasonCode);
+    }
+
+    @SuppressWarnings("deprecation") // For backwards compat keep deprecated methods
     @EventHandler(priority = EventPriority.LOWEST)
     public void onNPCRightClick(final NPCRightClickEvent evt) {
         if (plugin.getDependencies().getCitizens() == null) {
@@ -65,6 +80,7 @@ public class CitizensListener implements Listener {
             }
             evt.getClicker().acceptConversationInput(String.valueOf(evt.getNPC().getUniqueId()));
         }
+
         if (evt.getClicker().isConversing()) {
             return;
         }
@@ -72,124 +88,122 @@ public class CitizensListener implements Listener {
         final Player player = evt.getClicker();
         final IQuester quester = plugin.getQuester(player.getUniqueId());
         for (final IQuest quest : quester.getCurrentQuestsTemp().keySet()) {
-            if (quester.getCurrentStage(quest).containsObjective(ObjectiveType.DELIVER_ITEM)) {
-                final ItemStack hand = player.getItemInHand();
-                int currentIndex = -1;
-                final LinkedList<Integer> matches = new LinkedList<>();
-                int reasonCode = 0;
-                for (final ItemStack is : quester.getCurrentStage(quest).getItemsToDeliver()) {
-                    currentIndex++;
-                    reasonCode = ItemUtil.compareItems(is, hand, true);
-                    if (reasonCode == 0) {
-                        matches.add(currentIndex);
+            if (!quester.getCurrentStage(quest).containsObjective(ObjectiveType.DELIVER_ITEM)) {
+                continue;
+            }
+
+
+            final ItemStack hand = player.getItemInHand();
+            final Pair<LinkedList<Integer>, Integer> resultMatches = getDeliverItemMatches(quester, quest, hand);
+
+            final LinkedList<Integer> matches = resultMatches.value;
+            int reasonCode = resultMatches.second;
+            final NPC clicked = evt.getNPC();
+            if (!matches.isEmpty()) {
+                for (final Integer match : matches) {
+                    final UUID uuid = quester.getCurrentStage(quest).getItemDeliveryTargets().get(match);
+                    if (uuid.equals(clicked.getUniqueId())) {
+                        quester.deliverToNPC(quest, uuid, hand);
+                        return;
                     }
                 }
-                final NPC clicked = evt.getNPC();
-                if (!matches.isEmpty()) {
-                    for (final Integer match : matches) {
-                        final UUID uuid = quester.getCurrentStage(quest).getItemDeliveryTargets().get(match);
-                        if (uuid.equals(clicked.getUniqueId())) {
-                            quester.deliverToNPC(quest, uuid, hand);
-                            return;
+            } else if (!hand.getType().equals(Material.AIR)) {
+                for (final UUID uuid : quester.getCurrentStage(quest).getItemDeliveryTargets()) {
+                    if (uuid.equals(clicked.getUniqueId())) {
+                        String text = "";
+                        final boolean hasMeta = hand.getItemMeta() != null;
+                        if (hasMeta) {
+                            text += ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC
+                                    + (hand.getItemMeta().hasDisplayName() ? hand.getItemMeta().getDisplayName()
+                                    + ChatColor.GRAY + " (" : "");
                         }
-                    }
-                } else if (!hand.getType().equals(Material.AIR)) {
-                    for (final UUID uuid : quester.getCurrentStage(quest).getItemDeliveryTargets()) {
-                        if (uuid.equals(clicked.getUniqueId())) {
-                            String text = "";
-                            final boolean hasMeta = hand.getItemMeta() != null;
-                            if (hasMeta) {
-                                text += ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC
-                                        + (hand.getItemMeta().hasDisplayName() ? hand.getItemMeta().getDisplayName()
-                                        + ChatColor.GRAY + " (" : "");
-                            }
-                            text += ChatColor.AQUA + "<item>" + (hand.getDurability() != 0 ? (":" + ChatColor.BLUE
-                                    + hand.getDurability()) : "") + ChatColor.GRAY;
-                            if (hasMeta) {
-                                text += (hand.getItemMeta().hasDisplayName() ? ")" : "");
-                            }
-                            text += " x " + ChatColor.DARK_AQUA + hand.getAmount() + ChatColor.GRAY;
-                            if (plugin.getSettings().canTranslateNames() && !hasMeta
-                                    && !hand.getItemMeta().hasDisplayName()) {
-                                plugin.getLocaleManager().sendMessage(player, Lang
-                                        .get(player, "questInvalidDeliveryItem").replace("<item>", text), hand
-                                        .getType(), hand.getDurability(), null);
-                            } else {
-                                player.sendMessage(Lang.get(player, "questInvalidDeliveryItem")
-                                        .replace("<item>", text).replace("<item>", ItemUtil.getName(hand)));
-                            }
-                            switch (reasonCode) {
-                                case 1:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "one item is null"));
-                                    break;
-                                case 0:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "ERROR"));
-                                    break;
-                                case -1:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "name"));
-                                    break;
-                                case -2:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "amount"));
-                                    break;
-                                case -3:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "durability"));
-                                    break;
-                                case -4:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "display name or lore"));
-                                    break;
-                                case -5:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "enchantments"));
-                                    break;
-                                case -6:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "stored enchants"));
-                                    break;
-                                case -7:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "item flags"));
-                                    break;
-                                case -8:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "book data"));
-                                    break;
-                                case -9:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "potion type"));
-                                    break;
-                                case -10:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "fish variant"));
-                                    break;
-                                default:
-                                    player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
-                                            .replace("<data>", "unknown"));
-                            }
-                            if (hasMeta) {
-                                if (hand.getType().equals(Material.ENCHANTED_BOOK)) {
-                                    final EnchantmentStorageMeta esMeta = (EnchantmentStorageMeta) hand.getItemMeta();
-                                    if (esMeta.hasStoredEnchants()) {
-                                        for (final Entry<Enchantment, Integer> e : esMeta.getStoredEnchants()
-                                                .entrySet()) {
-                                            final HashMap<Enchantment, Integer> single = new HashMap<>();
-                                            single.put(e.getKey(), e.getValue());
-                                            plugin.getLocaleManager().sendMessage(player, ChatColor.GRAY + "\u2515 "
-                                                    + ChatColor.DARK_GREEN + "<enchantment> <level>\n", single);
-                                        }
+                        text += ChatColor.AQUA + "<item>" + (hand.getDurability() != 0 ? (":" + ChatColor.BLUE
+                                + hand.getDurability()) : "") + ChatColor.GRAY;
+                        if (hasMeta) {
+                            text += (hand.getItemMeta().hasDisplayName() ? ")" : "");
+                        }
+                        text += " x " + ChatColor.DARK_AQUA + hand.getAmount() + ChatColor.GRAY;
+                        if (plugin.getSettings().canTranslateNames() && !hasMeta
+                                && !hand.getItemMeta().hasDisplayName()) {
+                            plugin.getLocaleManager().sendMessage(player, Lang
+                                    .get(player, "questInvalidDeliveryItem").replace("<item>", text), hand
+                                    .getType(), hand.getDurability(), null);
+                        } else {
+                            player.sendMessage(Lang.get(player, "questInvalidDeliveryItem")
+                                    .replace("<item>", text).replace("<item>", ItemUtil.getName(hand)));
+                        }
+                        switch (reasonCode) {
+                            case 1:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "one item is null"));
+                                break;
+                            case 0:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "ERROR"));
+                                break;
+                            case -1:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "name"));
+                                break;
+                            case -2:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "amount"));
+                                break;
+                            case -3:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "durability"));
+                                break;
+                            case -4:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "display name or lore"));
+                                break;
+                            case -5:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "enchantments"));
+                                break;
+                            case -6:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "stored enchants"));
+                                break;
+                            case -7:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "item flags"));
+                                break;
+                            case -8:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "book data"));
+                                break;
+                            case -9:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "potion type"));
+                                break;
+                            case -10:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "fish variant"));
+                                break;
+                            default:
+                                player.sendMessage(ChatColor.GRAY + Lang.get(player, "difference")
+                                        .replace("<data>", "unknown"));
+                        }
+                        if (hasMeta) {
+                            if (hand.getType().equals(Material.ENCHANTED_BOOK)) {
+                                final EnchantmentStorageMeta esMeta = (EnchantmentStorageMeta) hand.getItemMeta();
+                                if (esMeta.hasStoredEnchants()) {
+                                    for (final Entry<Enchantment, Integer> e : esMeta.getStoredEnchants()
+                                            .entrySet()) {
+                                        final HashMap<Enchantment, Integer> single = new HashMap<>();
+                                        single.put(e.getKey(), e.getValue());
+                                        plugin.getLocaleManager().sendMessage(player, ChatColor.GRAY + "\u2515 "
+                                                + ChatColor.DARK_GREEN + "<enchantment> <level>\n", single);
                                     }
                                 }
                             }
-                            break;
                         }
+                        break;
                     }
                 }
             }
+
         }
         boolean hasObjective = false;
         for (final IQuest quest : quester.getCurrentQuestsTemp().keySet()) {
@@ -211,13 +225,53 @@ public class CitizensListener implements Listener {
         if (hasObjective || !plugin.getQuestNpcUuids().contains(evt.getNPC().getUniqueId())) {
             return;
         }
-        boolean hasAtLeastOneGUI = false;
+        Pair<LinkedList<IQuest>, Boolean> currentAvailableNpcQuests = getCurrentAvailableNpcQuests(quester,evt.getNPC().getUniqueId());
+        boolean hasAtLeastOneGUI = currentAvailableNpcQuests.second;
+        final LinkedList<IQuest> npcQuests = currentAvailableNpcQuests.value;
+
+        if (npcQuests.size() == 1) {
+            final IQuest q = npcQuests.get(0);
+            if (quester.canAcceptOffer(q, true)) {
+                quester.setQuestIdToTake(q.getId());
+                if (!plugin.getSettings().canAskConfirmation()) {
+                    quester.takeQuest(q, false);
+                    return;
+                }
+                if (q.getGUIDisplay() != null) {
+                    quester.showGUIDisplay(evt.getNPC().getUniqueId(), npcQuests);
+                    return;
+                }
+                for (final String msg : extracted(quester).split("<br>")) {
+                    player.sendMessage(msg);
+                }
+                plugin.getConversationFactory().buildConversation(player).begin();
+            }
+            return;
+        }
+
+        if (npcQuests.size() > 1) {
+            if (hasAtLeastOneGUI) {
+                quester.showGUIDisplay(evt.getNPC().getUniqueId(), npcQuests);
+                return;
+            }
+            final Conversation conversation = plugin.getNpcConversationFactory().buildConversation(player);
+            conversation.getContext().setSessionData("npcQuests", npcQuests);
+            conversation.getContext().setSessionData("npc", evt.getNPC().getName());
+            conversation.begin();
+            return;
+        }
+
+        Lang.send(player, ChatColor.YELLOW + Lang.get(player, "noMoreQuest"));
+    }
+
+    private Pair<LinkedList<IQuest>, Boolean> getCurrentAvailableNpcQuests(IQuester quester,UUID npcUuid) {
         final LinkedList<IQuest> npcQuests = new LinkedList<>();
+        boolean hasAtLeastOneGUI = false;
         for (final IQuest q : plugin.getLoadedQuests()) {
             if (quester.getCurrentQuestsTemp().containsKey(q)) {
                 continue;
             }
-            if (q.getNpcStart() != null && q.getNpcStart().equals(evt.getNPC().getUniqueId())) {
+            if (q.getNpcStart() != null && q.getNpcStart().equals(npcUuid)) {
                 if (plugin.getSettings().canIgnoreLockedQuests()
                         && (!quester.getCompletedQuestsTemp().contains(q)
                         || q.getPlanner().getCooldown() > -1)) {
@@ -235,37 +289,9 @@ public class CitizensListener implements Listener {
                 }
             }
         }
-        if (npcQuests.size() == 1) {
-            final IQuest q = npcQuests.get(0);
-            if (quester.canAcceptOffer(q, true)) {
-                quester.setQuestIdToTake(q.getId());
-                if (!plugin.getSettings().canAskConfirmation()) {
-                    quester.takeQuest(q, false);
-                } else {
-                    if (q.getGUIDisplay() != null) {
-                        quester.showGUIDisplay(evt.getNPC().getUniqueId(), npcQuests);
-                    } else {
-                        for (final String msg : extracted(quester).split("<br>")) {
-                            player.sendMessage(msg);
-                        }
-                        plugin.getConversationFactory().buildConversation(player).begin();
-                    }
-                }
-            }
-        } else if (npcQuests.size() > 1) {
-            if (hasAtLeastOneGUI) {
-                quester.showGUIDisplay(evt.getNPC().getUniqueId(), npcQuests);
-            } else {
-                final Conversation c = plugin.getNpcConversationFactory().buildConversation(player);
-                c.getContext().setSessionData("npcQuests", npcQuests);
-                c.getContext().setSessionData("npc", evt.getNPC().getName());
-                c.begin();
-            }
-        } else {
-            Lang.send(player, ChatColor.YELLOW + Lang.get(player, "noMoreQuest"));
-        }
-
+        return new Pair<>(npcQuests,hasAtLeastOneGUI);
     }
+
 
     @EventHandler
     public void onNPCLeftClick(final NPCLeftClickEvent evt) {
@@ -291,8 +317,7 @@ public class CitizensListener implements Listener {
             return;
         }
         if (evt.getNPC().getEntity().getLastDamageCause() instanceof EntityDamageByEntityEvent) {
-            final EntityDamageByEntityEvent damageEvent
-                    = (EntityDamageByEntityEvent) evt.getNPC().getEntity().getLastDamageCause();
+            final EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) evt.getNPC().getEntity().getLastDamageCause();
             final Entity damager = damageEvent.getDamager();
             if (plugin.getDependencies().getCitizens().getNPCRegistry().isNPC(damager)) {
                 return;
@@ -333,5 +358,31 @@ public class CitizensListener implements Listener {
         final IQuest quest = plugin.getQuestByIdTemp(quester.getQuestIdToTake());
         return MessageFormat.format("{0}- {1}{2}{3} -\n\n{4}{5}\n", ChatColor.GOLD, ChatColor.DARK_PURPLE,
                 quest.getName(), ChatColor.GOLD, ChatColor.RESET, quest.getDescription());
+    }
+
+
+    public static class Pair<U, V> {
+
+        /**
+         * The first element of this <code>Pair</code>
+         */
+        private final U value;
+
+        /**
+         * The second element of this <code>Pair</code>
+         */
+        private final V second;
+
+        /**
+         * Constructs a new <code>Pair</code> with the given values.
+         *
+         * @param first  the first element
+         * @param second the second element
+         */
+        public Pair(U first, V second) {
+            this.value = first;
+            this.second = second;
+        }
+
     }
 }
