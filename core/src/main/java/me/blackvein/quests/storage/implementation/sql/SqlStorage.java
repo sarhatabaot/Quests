@@ -622,7 +622,6 @@ public class SqlStorage implements StorageImplementation {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public LinkedList<ItemStack> deserializeItemStackProgress(String string, final LinkedList<ItemStack> objective) {
         final LinkedList<ItemStack> list = new LinkedList<>();
         if (string != null) {

@@ -46,6 +46,8 @@ import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
+// This is just bstats...
+@Deprecated
 public class Metrics {
 
   private final Plugin plugin;
